@@ -9,7 +9,7 @@ const NavbarTwo = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
-    { name: "ABOUTT", path: "/about" ,},
+    { name: "ABOUT", path: "/about" ,},
     // { name: "RESERVATION", path: "/reservation" },
 { name: "CONTACT", path: "/contact" },
 { name: "MENU", path: "/menu.pdf",newTab:true },
