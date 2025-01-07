@@ -162,8 +162,8 @@ const ReservationForm = () => {
       <div className="w-full max-w-5xl rounded-lg shadow-lg p-8 mt-24 border-orange-100 border-2" style={{
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   }}>
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-orange-100">Book your Table now</h2>
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl font-bold text-orange-100">BOOK YOUR TABLE NOW</h2>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -196,6 +196,7 @@ const ReservationForm = () => {
           <div className="space-y-2">
             <input
               type="tel"
+              maxLength={10}
               placeholder="Phone number"
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}

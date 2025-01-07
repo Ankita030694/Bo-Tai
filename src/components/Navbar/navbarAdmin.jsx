@@ -64,10 +64,10 @@ const AdminNavbar = () => {
             </div>
             {/* Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-            <Link to={'/admin/add/outlet'} className="px-4 py-2 bg-orange-100 text-brown-100 font-medium rounded-lg hover:bg-blue-700">
+            <Link to={'/admin/add/outlet'} className="px-4 py-2 bg-orange-200 text-brown-200 font-medium rounded-lg hover:bg-blue-700">
                 Outlets
               </Link>
-              <button onClick={logOut} className="px-4 py-2 bg-orange-100 text-brown-100 font-medium rounded-lg hover:bg-blue-700">
+              <button onClick={logOut} className="px-4 py-2 bg-orange-200 text-brown-200 font-medium rounded-lg hover:bg-blue-700">
                 Logout
               </button>
             </div>
