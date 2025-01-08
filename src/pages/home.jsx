@@ -61,7 +61,6 @@ const Home = () => {
             <a href="tel:+919870587770">
               <button
                 className="bg-[#331c13] text-[#e0b892] p-3 rounded-full w-32"
-                onClick={() => alert("Call Us clicked")}
               >
                 Call Us
               </button>
@@ -71,7 +70,7 @@ const Home = () => {
             <a href="/reservation">
               <button
                 className="bg-[#331c13] text-[#e0b892] p-3 rounded-full w-32"
-                onClick={() => alert("Reservation clicked")}
+                
               >
                 Reservation
               </button>
