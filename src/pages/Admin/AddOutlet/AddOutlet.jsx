@@ -192,60 +192,63 @@ function AddOutlet() {
           </div>
         </div>
       )}
-      {/* Update Modal */}
-      {showUpdateModal && selectedOutlet && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-gray-100">
-          <div className="bg-[rgb(78_50_38)] p-6 rounded-lg shadow-lg w-96 text-white">
-            <div className="flex justify-between w-full items-center">
-              <h2 className="text-xl font-bold mb-4">Update Outlet</h2>
-              <button
-                onClick={() => setShowUpdateModal(false)}
-                className="px-4 py-2 bg-red-500 text-white rounded-md"
-              >
-                Cancel
-              </button>
-            </div>
-            <input
-              type="text"
-              placeholder="Outlet Name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 text-black"
-              value={selectedOutlet.outlet}
-              disabled
-            />
-            {newTimeSlots.map((slot, index) => (
-              <div key={index} className="flex gap-2 mb-2">
-                <input
-                  type="text"
-                  placeholder={`Time Slot ${index + 1}`}
-                  className="flex-grow px-4 py-2 border border-gray-300 rounded-md text-black"
-                  value={slot}
-                  onChange={(e) => handleTimeSlotChange(index, e.target.value)}
-                />
-                <button
-                  onClick={() => handleDeleteTimeSlot(index)}
-                  className="px-3 py-2 bg-red-500 text-white rounded-md"
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={handleAddTimeSlot}
-              className="w-full px-4 py-2 bg-[rgb(100_70_50)] text-white rounded-md mb-4 hover:bg-[rgb(120_85_60)]"
-            >
-              + Add Time Slot
-            </button>
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={handleUpdateOutlet}
-                className="px-4 py-2 bg-[rgb(78_50_38)] text-white rounded-md hover:bg-[rgb(100_70_50)]"
-              >
-                Update Outlet
-              </button>
-            </div>
-          </div>
+     {/* Update Modal */}
+{showUpdateModal && selectedOutlet && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-gray-100">
+    <div className="bg-[rgb(78_50_38)] p-6 rounded-lg shadow-lg w-96 text-white">
+      <div className="flex justify-between w-full items-center">
+        <h2 className="text-xl font-bold mb-4">Update Outlet</h2>
+        <button
+          onClick={() => setShowUpdateModal(false)}
+          className="px-4 py-2 bg-red-500 text-white rounded-md"
+        >
+          Cancel
+        </button>
+      </div>
+      {/* Outlet Name Input */}
+      <input
+        type="text"
+        placeholder="Outlet Name"
+        className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 text-black"
+        value={selectedOutlet.outlet}
+        onChange={(e) => setSelectedOutlet({ ...selectedOutlet, outlet: e.target.value })} // Make the outlet name editable
+      />
+      {/* Time Slots Input */}
+      {newTimeSlots.map((slot, index) => (
+        <div key={index} className="flex gap-2 mb-2">
+          <input
+            type="text"
+            placeholder={`Time Slot ${index + 1}`}
+            className="flex-grow px-4 py-2 border border-gray-300 rounded-md text-black"
+            value={slot}
+            onChange={(e) => handleTimeSlotChange(index, e.target.value)}
+          />
+          <button
+            onClick={() => handleDeleteTimeSlot(index)}
+            className="px-3 py-2 bg-red-500 text-white rounded-md"
+          >
+            Delete
+          </button>
         </div>
-      )}
+      ))}
+      <button
+        onClick={handleAddTimeSlot}
+        className="w-full px-4 py-2 bg-[rgb(100_70_50)] text-white rounded-md mb-4 hover:bg-[rgb(120_85_60)]"
+      >
+        + Add Time Slot
+      </button>
+      <div className="flex justify-end gap-4">
+        <button
+          onClick={handleUpdateOutlet}
+          className="px-4 py-2 bg-[rgb(78_50_38)] text-white rounded-md hover:bg-[rgb(100_70_50)]"
+        >
+          Update Outlet
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </>
   );
 }

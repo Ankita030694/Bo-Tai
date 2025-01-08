@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import ReservationComponent from '../../components/Reservation/reservationComponent';
 import NavbarTwo from '../../components/Navbar/navbar2';
 import ReservationForm from '../../components/Reservation/reservationform';
+import Navbar from '../../components/Navbar/navbar';
 function Reservation() {
 
 
@@ -15,7 +16,7 @@ function Reservation() {
                 transition={{ duration: 0.5 }}
             >
               
-                <NavbarTwo />
+                <Navbar />
                 {/* <ReservationComponent /> */}
                 <ReservationForm />
                 <Footer />

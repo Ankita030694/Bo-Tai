@@ -6,11 +6,12 @@ import AboutGallery from '../../components/AboutGallery/aboutgallery';
 import Footer from '../../components/Footer/footer';
 import NavbarTwo from '../../components/Navbar/navbar2';
 import LogoSlider from '../../components/LogoSlider/logoslider';
+import Navbar from '../../components/Navbar/navbar';
 
 const About = () => {
   return (
     <div className="relative">
-      <NavbarTwo />  
+      <Navbar />  
       <div className="w-full bg-brown-200 pt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative">
