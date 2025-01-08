@@ -57,20 +57,25 @@ const Home = () => {
           <Reviews />
           <Footer />
           {/* Sticky Buttons */}
-          <div className="lg:hidden fixed bottom-0 left-0 right-7 z-40 p-4 flex justify-around bg-brown shadow-lg border-2 border-[#a47148] rounded-lg">
-            <button
-              className="bg-[#331c13] text-[#e0b892] p-3 rounded-full w-32"
-              onClick={() => alert("Call Us clicked")}
-            >
-              Call Us
-            </button>
-            <div className="h-12 w-px bg-[#a47148]"></div> {/* Vertical Line Divider */}
-            <button
-              className="bg-[#331c13] text-[#e0b892] p-3 rounded-full w-32"
-              onClick={() => alert("Reservation clicked")}
-            >
-              Reservation
-            </button>
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4 flex justify-around bg-brown shadow-lg border-2 border-[#a47148] rounded-lg">
+            <a href="tel:+919870587770">
+              <button
+                className="bg-[#331c13] text-[#e0b892] p-3 rounded-full w-32"
+                onClick={() => alert("Call Us clicked")}
+              >
+                Call Us
+              </button>
+            </a>
+            <div className="h-12 w-px bg-[#a47148]"></div>{" "}
+            {/* Vertical Line Divider */}
+            <a href="/reservation">
+              <button
+                className="bg-[#331c13] text-[#e0b892] p-3 rounded-full w-32"
+                onClick={() => alert("Reservation clicked")}
+              >
+                Reservation
+              </button>
+            </a>
           </div>
         </motion.div>
       )}
