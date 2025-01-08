@@ -14,8 +14,16 @@ const BoTaiGallery = () => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 4000);
+    const script = document.createElement('script');
+    script.src = 'https://apps.elfsight.com/p/platform.js';
+    script.defer = true;
+    document.body.appendChild(script);
 
-    return () => clearInterval(interval);
+    // Cleanup function
+    return () => {
+      document.body.removeChild(script);
+      clearInterval(interval);
+    };
   }, []);
 
   const containerVariants = {
@@ -68,30 +76,7 @@ const BoTaiGallery = () => {
       variants={containerVariants}
       viewport={{ once: true }}
     >
-      <div className="grid gap-4 max-w-6xl w-full md:grid-cols-3 sm:grid-cols-1">
-        {images.map((image, index) => (
-          <motion.div
-            key={index}
-            className="overflow-hidden rounded-xl relative"
-            variants={imageVariants}
-            whileHover="hover"
-          >
-            <motion.img
-              src={images[(currentImage + index) % images.length]}
-              alt={`Gallery image ${index + 1}`}
-              className="w-full h-full object-cover"
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-black/0"
-              variants={overlayVariants}
-            />
-          </motion.div>
-        ))}
-      </div>
+      <div class="elfsight-app-0e0d74dc-158d-488b-858d-37fa326a8c43" data-elfsight-app-lazy></div>
     </motion.div>
   );
 };

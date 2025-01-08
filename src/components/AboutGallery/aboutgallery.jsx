@@ -9,6 +9,7 @@ import gallery7 from '../../assets/about/gallery7.png';
 import gallery8 from '../../assets/about/gallery8.png';
 import leftbowl from '../../assets/about/lbowl.png';
 import rightbowl from '../../assets/about/rbowl.png';
+import image1 from "../../assets/newImages/4.jpg"
 
 const HeroSection = () => {
   return (
@@ -60,7 +61,9 @@ const GallerySection = () => {
       { id: 7, image: gallery1, title: 'Signature Cocktails' },
       { id: 8, image: gallery2, title: 'Thai Delicacies' },
       { id: 4, image: gallery1, title: 'Signature Cocktails' },
-      { id: 9, image: gallery3, title: 'Artistic Drinks' },
+      { id: 10, image: image1, title: 'Artistic Drinks' },
+      // { id: 9, image: gallery3, title: 'Artistic Drinks' },
+      // { id: 9, image: gallery3, title: 'Artistic Drinks' },
     ];
   
     const totalSlides = Math.ceil(images.length / 3);
@@ -107,7 +110,7 @@ const GallerySection = () => {
                       />
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                          <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3>
+                          {/* <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3> */}
                         </div>
                       </div>
                     </div>
