@@ -3,18 +3,13 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./header.css";
 
 // Import images
-import hero from "../../assets/hero.png";
-import header1 from "/banners/BOTAI 16X9 03.jpg";
-import header2 from "/banners/BOTAI 16X9 01.jpg";
-import header3 from "/banners/BOTAI 16X9 04.jpg";
-import header4 from "/banners/BOTAI 16X9 05.jpg";
-import header5 from "/banners/BOTAI 16X9 06.jpg";
-import header6 from "/banners/BOTAI 16X9 07.jpg";
+// import hero from "../../assets/hero.png";
 import header7 from "/banners/BOTAI 16X9.jpg";
 
-const images = [hero, header1, header2, header3, header4, header5, header6, header7];
+const images = [header7];
 
 const Header = () => {
   const [boxesVisible, setBoxesVisible] = useState(true);
@@ -74,14 +69,14 @@ const Header = () => {
       {/* Animated Text */}
       {!boxesVisible && (
         <div className="absolute inset-0 bg-black bg-opacity-40">
-          <div className="container mx-auto h-full flex flex-col justify-center px-8 text-center items-center">
+          <div className="container mx-auto h-full flex flex-col justify-center px-4 text-center items-center">
             <motion.h1
               initial={textAnimation.initial}
               animate={textAnimation.animate}
               transition={{ ...textAnimation.transition, delay: 0 }}
-              className="text-5xl md:text-6xl lg:text-8xl font-bold text-brown-200 mb-6 md:mb-8 font-heading tracking-tighter"
+              className="text-5xl md:text-6xl lg:text-8xl font-bold text-brown-200 mb-6 md:mb-8 font-heading tracking-tighter relative"
             >
-              MODERN THAI BAR & GRILL
+              <div className="glassy-box">MODERN THAI BAR & GRILL</div>
             </motion.h1>
           </div>
         </div>

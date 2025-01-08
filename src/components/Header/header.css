@@ -1,0 +1,18 @@
+.txt{
+    color: white !important;
+}
+
+.glassy-box {
+    display: inline-block;
+    padding: 10px 20px; /* Reduced padding for a smaller box */
+    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    backdrop-filter: blur(5px); /* Creates the glassy effect */
+    -webkit-backdrop-filter: blur(10px); /* Support for WebKit browsers */
+    border-radius: 10px; /* Slightly smaller rounded corners */
+    color: whitesmoke;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight text shadow */
+  }
+  
+  

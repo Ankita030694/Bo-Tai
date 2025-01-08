@@ -53,7 +53,6 @@ const Footer = () => {
             transition={{ ...bananaAnimation.transition, delay: 0.2 }}
             className=" w-full md:w-1/3 text-center md:text-left"
           >
-            
             <a href="/">
               <img
                 src={logo}
@@ -65,35 +64,31 @@ const Footer = () => {
               A Modern Thai bar & Grill concept blending cosmopolitan Italian
               design with the vibrance of Thai hues.
             </p>
-            <Link
-              to={"/reservation"}
-              className="px-6 py-2 bg-orange-100 rounded hover:bg-brown-400 hover:text-orange-100 transition-colors"
-            >
-              Reservation
-            </Link>
+
+
             {/* Social Media Links */}
-        <motion.div
-          initial={bananaAnimation.initial}
-          whileInView={bananaAnimation.animate}
-          viewport={{ once: true }}
-          transition={{ ...bananaAnimation.transition, delay: 1 }}
-          className="flex gap-4 mt-7 justify-center md:justify-start ml-0"
-        >
-          {socialLinks.map((link, index) => (
-            <motion.a
-              key={index}
-              href={link.href}
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
+            <motion.div
+              initial={bananaAnimation.initial}
+              whileInView={bananaAnimation.animate}
               viewport={{ once: true }}
-              transition={{ delay: 1.2 + index * 0.1 }}
-              className="text-brown-100 hover:text-orange-100 transition-colors text-2xl"
-              aria-label={link.icon}
+              transition={{ ...bananaAnimation.transition, delay: 1 }}
+              className="flex gap-4 mt-7 justify-center md:justify-start ml-0"
             >
-              {link.icon}
-            </motion.a>
-          ))}
-        </motion.div>
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1.2 + index * 0.1 }}
+                  className="text-brown-100 hover:text-orange-100 transition-colors text-2xl"
+                  aria-label={link.icon}
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* Quick Links */}
@@ -157,10 +152,7 @@ const Footer = () => {
               ))}
             </ul>
           </motion.div>
-          
         </div>
-
-        
       </div>
     </footer>
   );

@@ -9,7 +9,6 @@ const NavbarTwo = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
-    { name: "HOME", path: "/" ,},
     { name: "ABOUT", path: "/about" ,},
     // { name: "RESERVATION", path: "/reservation" },
 { name: "CONTACT", path: "/contact" },
@@ -121,7 +120,7 @@ const NavbarTwo = () => {
             <div className="mt-6 space-y-4">
               <a href="tel:+919870587770" >
               <button className="w-full px-4 py-2 bg-brown text-white rounded-lg hover:bg-brown-400">
-                Call US
+                Call Us
               </button>
               </a>
               <div></div>

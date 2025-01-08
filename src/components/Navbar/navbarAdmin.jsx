@@ -7,7 +7,6 @@ const AdminNavbar = () => {
   const navi = useNavigate();
 
   const navItems = [
-    { name: "HOME", path: "/admin/" },
     { name: "CONTACT", path: "/admin/contact" },
     { name: "RESERVATION", path: "/admin/reservation" },
   ];

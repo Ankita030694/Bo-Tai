@@ -39,16 +39,6 @@ const Reviews = () => {
               alt="Sushi" 
               className="shadow-xl max-w-full sm:w-80 md:w-full"
             />
-            <motion.div 
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-8 md:left-96 md:transform-none p-4 rounded-lg shadow-lg text-white bg-brown-500"
-            >
-              <h3 className="text-2xl md:text-3xl font-bold text-white">90K+</h3>
-              <p className="text-sm md:text-base">Happy customers</p>
-            </motion.div>
           </motion.div>
 
           {/* Right Widget Section */}
