@@ -12,7 +12,7 @@ const ReservationForm = () => {
   const [showThankYou, setShowThankYou] = useState(false);
   const [loading, setLoading] = useState(true);
   const [slotName, setslotName] = useState("Lunch");
-  const [persons, setPersons] = useState();
+  const [persons, setPersons] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,7 +70,7 @@ const ReservationForm = () => {
 
   // Decrement persons value
   const decrement = () => {
-    if (persons > 1) {
+    if (persons > 0) {
       setPersons(persons - 1);
     }
   };
@@ -320,13 +320,13 @@ const ReservationForm = () => {
               )}
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 text-white">
               <div className="flex items-center space-x-2">
                 {/* Decrement Button */}
                 <button
                   onClick={decrement}
                   className="px-4 py-2 bg-gray-200 rounded-md focus:outline-none"
-                ></button>
+                > - </button>
 
                 {/* Input for person count with manual entry */}
                 <input
@@ -336,14 +336,14 @@ const ReservationForm = () => {
                   className="w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300"
                   min="1"
                   max="150"
-                  placeholder="Number Of People"
+                  placeholder="Person"
                 />
 
                 {/* Increment Button */}
                 <button
                   onClick={increment}
                   className="px-4 py-2 bg-gray-200 rounded-md focus:outline-none"
-                ></button>
+                > + </button>
               </div>
 
               {/* <p>
