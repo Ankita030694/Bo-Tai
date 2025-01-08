@@ -16,7 +16,7 @@ function Reservation() {
                 transition={{ duration: 0.5 }}
             >
               
-                <Navbar />
+                <NavbarTwo />
                 {/* <ReservationComponent /> */}
                 <ReservationForm />
                 <Footer />

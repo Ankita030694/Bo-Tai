@@ -58,7 +58,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <Navbar/>
+      <NavbarTwo/>
       <div className="min-h-screen bg-[#f9f6f1] py-16 px-6 sm:px-8 lg:px-12 ">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mt-20">
           {/* Left Section */}
