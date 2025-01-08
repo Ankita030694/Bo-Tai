@@ -3,6 +3,7 @@ import FirestoreService from '../../services/firestore-service';
 import reserve from '../../assets/formbg.png';
 import loadingAnimation from '../../assets/loader-old.json'
 import Lottie from 'lottie-react';
+import "./reservation.css"
 const ReservationForm = () => {
   const [outlets, setOutlets] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
@@ -258,7 +259,7 @@ const ReservationForm = () => {
             />
             {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
           </div>
-          <div className='flex justify-evenly'>
+          <div className='flex justify-evenly txt'>
           <div className="space-y-2">
             <button
               type="button"
@@ -287,8 +288,8 @@ const ReservationForm = () => {
             </button>
           </div>
         </div>
-          <div className="space-y-2">
-            <div className="grid grid-cols-4 gap-2">
+          <div className="space-y-2 align items-center txt">
+            <div className="grid grid-cols-3 gap-2">
               {timeSlots.map((slot, index) => (
                 <button
                   key={index}
@@ -310,7 +311,7 @@ const ReservationForm = () => {
           <button 
             type="submit"
             disabled={loading}
-            className="w-full bg-orange-100 hover:bg-brown-400 text-white font-semibold hover:text-orange-100 py-3 rounded-lg transition-colors duration-200 disabled:bg-orange-300"
+            className=" txt w-full bg-orange-100 hover:bg-brown-400 text-white font-semibold hover:text-orange-100 py-3 rounded-lg transition-colors duration-200 disabled:bg-orange-300"
           >
              {loading ? 'Please Wait ..' : 'Submit'}
           </button>

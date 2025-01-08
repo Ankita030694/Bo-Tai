@@ -42,8 +42,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-brown text-white py-12">
-      <div className="container mx-auto px-12">
+    <footer className="bg-brown text-white py-3">
+      <div className="container mx-auto px-3">
         <div className="flex flex-wrap justify-around">
           {/* Logo and Description */}
           <motion.div

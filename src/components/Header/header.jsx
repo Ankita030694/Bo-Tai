@@ -1,34 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import headerbg from '../../assets/hero.png';
-import headerfg from '../../assets/header-fg.png';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
+import { motion } from "framer-motion";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const AnimatedHeader = () => {
+// Import images
+import hero from "../../assets/hero.png";
+import header1 from "/banners/BOTAI 16X9 03.jpg";
+import header2 from "/banners/BOTAI 16X9 01.jpg";
+import header3 from "/banners/BOTAI 16X9 04.jpg";
+import header4 from "/banners/BOTAI 16X9 05.jpg";
+import header5 from "/banners/BOTAI 16X9 06.jpg";
+import header6 from "/banners/BOTAI 16X9 07.jpg";
+import header7 from "/banners/BOTAI 16X9.jpg";
+
+const images = [hero, header1, header2, header3, header4, header5, header6, header7];
+
+const Header = () => {
   const [boxesVisible, setBoxesVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setBoxesVisible(false);
-    }, 2000); // Adjust the duration for the box animation
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
   const textAnimation = {
     initial: { y: 100, opacity: 0 },
     animate: { y: 0, opacity: 1 },
-    transition: { type: 'string', stiffness: 50, damping: 20 },
+    transition: { type: "spring", stiffness: 50, damping: 20 },
+  };
+
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    fade: true,
   };
 
   return (
-    <div
-      className="relative h-screen bg-brown-400"
-      style={{
-        backgroundImage: `url(${headerbg})`,
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-        backgroundRepeat: 'no-repeat', 
-      }}
-    >
+    <div className="relative h-screen">
+      {/* Carousel */}
+      <Slider {...carouselSettings}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-screen object-cover"
+            />
+          </div>
+        ))}
+      </Slider>
+
       {/* Initial Cover Boxes */}
       {boxesVisible && (
         <div className="absolute inset-0 flex flex-wrap">
@@ -42,7 +71,7 @@ const AnimatedHeader = () => {
         </div>
       )}
 
-      {/* Animated Text and Button */}
+      {/* Animated Text */}
       {!boxesVisible && (
         <div className="absolute inset-0 bg-black bg-opacity-40">
           <div className="container mx-auto h-full flex flex-col justify-center px-8 text-center items-center">
@@ -50,33 +79,15 @@ const AnimatedHeader = () => {
               initial={textAnimation.initial}
               animate={textAnimation.animate}
               transition={{ ...textAnimation.transition, delay: 0 }}
-              // className="text-8xl font-bold text-brown-200 mb-8 font-heading tracking-tighter"
               className="text-5xl md:text-6xl lg:text-8xl font-bold text-brown-200 mb-6 md:mb-8 font-heading tracking-tighter"
-
-              style={{
-              
-              }}
             >
               MODERN THAI BAR & GRILL
             </motion.h1>
-
-            {/* Button (currently commented out) */}
-            {/* <motion.button
-              initial={textAnimation.initial}
-              animate={textAnimation.animate}
-              transition={{ ...textAnimation.transition, delay: 0.2 }}
-              className="w-fit px-8 py-2 bg-orange-100 text-white rounded-lg hover:bg-brown-100 hover:text-orange-100 font-semibold transition-colors"
-            >
-              Book a table
-            </motion.button> */}
           </div>
         </div>
       )}
-      {/* <div className="flex w-screen h-screen justify-center items-center ">
-        <img src={headerfg} alt="" className= ' md:h-screen h-auto '/>
-      </div> */}
     </div>
   );
 };
 
-export default AnimatedHeader;
+export default Header;
