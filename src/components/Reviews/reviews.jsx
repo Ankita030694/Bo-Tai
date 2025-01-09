@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import review from '../../assets/Reviews.png';
+import review2 from "../../assets/newImages/19.jpg"
 
 const bananaAnimation = {
   initial: { x: -100, opacity: 0, rotateY: -30 },
@@ -35,7 +36,7 @@ const Reviews = () => {
             className="relative flex justify-center"
           >
             <img 
-              src={review} 
+              src={review2} 
               alt="Sushi" 
               className="shadow-xl max-w-full sm:w-80 md:w-full"
             />

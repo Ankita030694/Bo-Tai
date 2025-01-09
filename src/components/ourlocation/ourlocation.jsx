@@ -1,24 +1,27 @@
 import React from 'react';
 import location1 from '../../assets/about/location1.png';
 import location2 from '../../assets/about/location2.png';
-import location3 from '../../assets/about/location3.png';
+import location3 from '../../assets/newImages/23.jpg';
 
 const locations = [
   {
     city: 'GOA',
     image: location1,
-    description: 'Modern Thai bar & Grill'
+    description: 'Modern Thai bar & Grill',
+    comingSoon: true,
   },
   {
     city: 'DELHI',
     image: location3,
-    description: 'Modern Thai bar & Grill'
+    description: 'Modern Thai bar & Grill',
+    comingSoon: false,
   },
   {
     city: 'BANGALORE',
-    image:  location2,
-    description: 'Modern Thai bar & Grill'
-  }
+    image: location2,
+    description: 'Modern Thai bar & Grill',
+    comingSoon: true,
+  },
 ];
 
 const OurLocation = () => {
@@ -35,23 +38,40 @@ const OurLocation = () => {
       </div>
 
       {/* Locations Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-8">
-        {locations.map((location) => (
-          <div 
-            key={location.city}
-            className="relative overflow-hidden rounded-lg cursor-pointer transition-transform duration-300 hover:scale-105"
+      <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-8 mb-10 mt-10">
+        {locations.map((location, index) => (
+          <div
+            key={index}
+            className="relative rounded-lg cursor-pointer transition-transform duration-300 hover:scale-105 w-full max-w-sm"
+            style={{
+              height: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
           >
-            <div className="relative">
-              <div className="absolute transition-opacity duration-300 group-hover:opacity-20" />
+            <div
+              className={`relative w-full ${
+                index === 2 ? '' : 'h-full'
+              }`} // Ensure others adapt to the tallest card (location 2)
+              style={{ display: 'flex', height: '100%' }}
+            >
               <img
                 src={location.image}
                 alt={`${location.city} location`}
-                className="pb-20"
+                className={`w-full object-cover ${
+                  index === 2 ? 'h-auto' : 'h-full'
+                } rounded-lg`} // Location 2 retains its original size
               />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6">
-                {/* <h2 className="text-4xl font-bold mb-2 tracking-wider">BO-TAI</h2> */}
-                {/* <p className="text-2xl tracking-wide">{location.city}</p> */}
-              </div>
+
+              {/* Coming Soon Overlay */}
+              {location.comingSoon && (
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center rounded-lg">
+                  <div className="text-center">
+                    <h2 className="text-2xl font-bold text-white">COMING SOON</h2>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}
