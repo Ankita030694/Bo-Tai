@@ -1,7 +1,7 @@
 import React from 'react';
 import location1 from '../../assets/about/location1.png';
 import location2 from '../../assets/about/location2.png';
-import location3 from '../../assets/newImages/23.jpg';
+import location3 from '../../assets/about/location3.png';
 
 const locations = [
   {

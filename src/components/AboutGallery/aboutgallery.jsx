@@ -9,28 +9,63 @@ import gallery7 from "../../assets/about/gallery7.png";
 import gallery8 from "../../assets/about/gallery8.png";
 import leftbowl from "../../assets/about/lbowl.png";
 import rightbowl from "../../assets/about/rbowl.png";
-import image1 from "../../assets/newImages/1.jpg";
-import image2 from "../../assets/newImages/2.jpg";
-import image3 from "../../assets/newImages/3.jpg";
-import image4 from "../../assets/newImages/4.jpg";
-import image5 from "../../assets/newImages/5.jpg";
-import image6 from "../../assets/newImages/6.jpg";
-import image7 from "../../assets/newImages/7.jpg";
-import image8 from "../../assets/newImages/8.jpg";
-// import image9 from "../../assets/newImages/9.jpg"
-import image10 from "../../assets/newImages/10.jpg";
-import image11 from "../../assets/newImages/11.jpg";
-import image12 from "../../assets/newImages/12.jpg";
-import image13 from "../../assets/newImages/13.jpg";
-import image14 from "../../assets/newImages/14.jpg";
-import image15 from "../../assets/newImages/15.jpg";
-import image16 from "../../assets/newImages/16.jpg";
-import image17 from "../../assets/newImages/17.jpg";
-// import image18 from "../../assets/newImages/18.PNG"
-import image19 from "../../assets/newImages/19.jpg";
-import image20 from "../../assets/newImages/20.jpg";
-import image21 from "../../assets/newImages/21.jpg";
-import image22 from "../../assets/newImages/22.jpg";
+import image1 from "../../assets/newPhotos/1.jpg";
+import image2 from "../../assets/newPhotos/2.jpg";
+import image3 from "../../assets/newPhotos/3.jpg";
+import image4 from "../../assets/newPhotos/4.jpg";
+import image5 from "../../assets/newPhotos/5.jpg";
+import image6 from "../../assets/newPhotos/6.jpg";
+import image7 from "../../assets/newPhotos/7.jpg";
+import image8 from "../../assets/newPhotos/8.jpg";
+import image9 from "../../assets/newPhotos/9.jpg"
+import image11 from "../../assets/newPhotos/10.jpg";
+import image10 from "../../assets/newPhotos/11.jpg";
+import image12 from "../../assets/newPhotos/12.jpg";
+import image13 from "../../assets/newPhotos/13.jpg";
+import image14 from "../../assets/newPhotos/14.jpg";
+import image15 from "../../assets/newPhotos/15.jpg";
+import image16 from "../../assets/newPhotos/16.jpg";
+import image17 from "../../assets/newPhotos/17.jpg";
+import image18 from "../../assets/newPhotos/18.jpg"
+import image19 from "../../assets/newPhotos/19.jpg";
+import image20 from "../../assets/newPhotos/20.jpg";
+import image21 from "../../assets/newPhotos/21.jpg";
+import image22 from "../../assets/newPhotos/22.jpg";
+import image23 from "../../assets/newPhotos/23.jpg";
+import image24 from "../../assets/newPhotos/24.jpg";
+import image25 from "../../assets/newPhotos/25.jpg";
+import image26 from "../../assets/newPhotos/26.jpg";
+import image27 from "../../assets/newPhotos/27.jpg";
+import image28 from "../../assets/newPhotos/28.jpg";
+import image29 from "../../assets/newPhotos/29.jpg";
+import image30 from "../../assets/newPhotos/30.jpg";
+import image31 from "../../assets/newPhotos/31.jpg";
+import image32 from "../../assets/newPhotos/32.jpg";
+import image33 from "../../assets/newPhotos/33.jpg";
+import image34 from "../../assets/newPhotos/34.jpg";
+import image35 from "../../assets/newPhotos/35.jpg";
+import image36 from "../../assets/newPhotos/36.jpg";
+import image37 from "../../assets/newPhotos/37.jpg";
+import image38 from "../../assets/newPhotos/38.jpg";
+import image39 from "../../assets/newPhotos/39.jpg";
+import image40 from "../../assets/newPhotos/40.jpg";
+import image41 from "../../assets/newPhotos/41.jpg";
+import image42 from "../../assets/newPhotos/42.jpg";
+import image43 from "../../assets/newPhotos/43.jpg";
+import image44 from "../../assets/newPhotos/44.jpg";
+import image45 from "../../assets/newPhotos/45.jpg";
+import image46 from "../../assets/newPhotos/46.jpg";
+import image47 from "../../assets/newPhotos/47.jpg";
+import image48 from "../../assets/newPhotos/48.jpg";
+import image49 from "../../assets/newPhotos/49.jpg";
+import image50 from "../../assets/newPhotos/50.jpg";
+import image51 from "../../assets/newPhotos/51.jpg";
+import image52 from "../../assets/newPhotos/52.jpg";
+import image53 from "../../assets/newPhotos/53.jpg";
+import image54 from "../../assets/newPhotos/54.jpg";
+import image55 from "../../assets/newPhotos/55.jpg";
+import image56 from "../../assets/newPhotos/56.jpg";
+import image57 from "../../assets/newPhotos/57.jpg";
 
 const HeroSection = () => {
   return (
@@ -75,15 +110,6 @@ const GallerySection = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const images = [
-    { id: 1, image: gallery1, title: "Signature Cocktails" },
-    { id: 2, image: gallery2, title: "Thai Delicacies" },
-    { id: 3, image: gallery3, title: "Artistic Drinks" },
-    { id: 4, image: gallery1, title: "Signature Cocktails" },
-    { id: 5, image: gallery2, title: "Thai Delicacies" },
-    { id: 6, image: gallery3, title: "Artistic Drinks" },
-    { id: 7, image: gallery1, title: "Signature Cocktails" },
-    { id: 8, image: gallery2, title: "Thai Delicacies" },
-    { id: 9, image: image22, title: "Artistic Drinks" },
     { id: 10, image: image1, title: "Artistic Drinks" },
     { id: 11, image: image2, title: "Artistic Drinks" },
     { id: 12, image: image3, title: "Artistic Drinks" },
@@ -92,7 +118,7 @@ const GallerySection = () => {
     { id: 15, image: image6, title: "Artistic Drinks" },
     { id: 16, image: image7, title: "Artistic Drinks" },
     { id: 17, image: image8, title: "Artistic Drinks" },
-    // { id: 18, image: image9, title: 'Artistic Drinks' },
+    { id: 18, image: image9, title: 'Artistic Drinks' },
     { id: 19, image: image10, title: "Artistic Drinks" },
     { id: 20, image: image11, title: "Artistic Drinks" },
     { id: 21, image: image12, title: "Artistic Drinks" },
@@ -101,12 +127,46 @@ const GallerySection = () => {
     { id: 24, image: image15, title: "Artistic Drinks" },
     { id: 25, image: image16, title: "Artistic Drinks" },
     { id: 26, image: image17, title: "Artistic Drinks" },
-    // { id: 27, image: image18, title: 'Artistic Drinks' },
+    { id: 27, image: image18, title: 'Artistic Drinks' },
     { id: 28, image: image19, title: "Artistic Drinks" },
     { id: 29, image: image20, title: "Artistic Drinks" },
     { id: 30, image: image21, title: "Artistic Drinks" },
-    // { id: 9, image: gallery3, title: 'Artistic Drinks' },
-    // { id: 9, image: gallery3, title: 'Artistic Drinks' },
+    { id: 31, image: image22, title: "Artistic Drinks" },
+    { id: 32, image: image23, title: "Artistic Drinks" },
+    { id: 33, image: image24, title: "Artistic Drinks" },
+    { id: 34, image: image25, title: "Artistic Drinks" },
+    { id: 35, image: image26, title: "Artistic Drinks" },
+    { id: 36, image: image27, title: "Artistic Drinks" },
+    { id: 37, image: image28, title: "Artistic Drinks" },
+    { id: 38, image: image29, title: "Artistic Drinks" },
+    { id: 39, image: image30, title: "Artistic Drinks" },
+    { id: 40, image: image31, title: "Artistic Drinks" },
+    { id: 41, image: image32, title: "Artistic Drinks" },
+    { id: 42, image: image33, title: "Artistic Drinks" },
+    { id: 43, image: image34, title: "Artistic Drinks" },
+    { id: 44, image: image35, title: "Artistic Drinks" },
+    { id: 45, image: image36, title: "Artistic Drinks" },
+    { id: 46, image: image37, title: "Artistic Drinks" },
+    { id: 47, image: image38, title: "Artistic Drinks" },
+    { id: 48, image: image39, title: "Artistic Drinks" },
+    { id: 49, image: image40, title: "Artistic Drinks" },
+    { id: 50, image: image41, title: "Artistic Drinks" },
+    { id: 51, image: image42, title: "Artistic Drinks" },
+    { id: 52, image: image43, title: "Artistic Drinks" },
+    { id: 53, image: image44, title: "Artistic Drinks" },
+    { id: 54, image: image45, title: "Artistic Drinks" },
+    { id: 55, image: image46, title: "Artistic Drinks" },
+    { id: 56, image: image47, title: "Artistic Drinks" },
+    { id: 57, image: image48, title: "Artistic Drinks" },
+    { id: 58, image: image49, title: "Artistic Drinks" },
+    { id: 59, image: image51, title: "Artistic Drinks" },
+    { id: 60, image: image52, title: "Artistic Drinks" },
+    { id: 61, image: image53, title: "Artistic Drinks" },
+    { id: 62, image: image54, title: "Artistic Drinks" },
+    { id: 63, image: image55, title: "Artistic Drinks" },
+    { id: 64, image: image56, title: "Artistic Drinks" },
+    { id: 65, image: image57, title: "Artistic Drinks" },
+    // { id: 9, image:  image9, title: 'Artistic Drinks' },
   ];
 
   const totalSlides = Math.ceil(images.length / 3);
@@ -143,13 +203,13 @@ const GallerySection = () => {
               {getCurrentImages().map((item) => (
                 <div
                   key={item.id}
-                  className="relative overflow-hidden rounded-lg group cursor-pointer w-80 h-60"
+                  className="relative overflow-hidden rounded-lg group cursor-pointer"
                 >
                   <div className="w-full h-full">
                     <img
                       src={item.image}
                       alt={item.title}
-                      loading="lazy"
+                      loading="lazy" 
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
