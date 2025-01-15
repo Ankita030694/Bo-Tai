@@ -75,7 +75,7 @@ const OurStory = () => {
             viewport={{ once: true, margin: "-100px" }}
             variants={contentVariants}
           >
-            BO TAI, DELHI – bo tai, a Modern Thai bar & Grill concept is a perfect blend of cosmopolitan italian design with the vibrance of thai hues. a smart casual vibe clubbed with a serendipitous coziness, bo–tai is designed for the young and socially smart champagne set. a smart, spunky verbal 'pun bow-tie' that represents both the style and flavor of oriental cuisine. it is a concept set against international decor, which is contemporary thai and italian. 'Tai', is imperfect insinuation of the food philosophy.
+           Bo Tai is a modern Thai bar and grill concept that seamlessly blends cosmopolitan Italian design with vibrant Thai elements. With its chic yet cozy ambiance, Bo Tai is crafted for the young, stylish, and socially savvy crowd. The name itself, a playful pun on “bow-tie,” reflects the sophistication and bold flavors of its Oriental-inspired cuisine. Combining contemporary Thai and Italian influences, Bo Tai offers a unique culinary experience set against an international backdrop that celebrates both style and flavor.
           </motion.p>
 
           {/* Stats */}

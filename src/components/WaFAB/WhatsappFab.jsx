@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import "../WaFAB/wp.css"
 
 const WhatsappFAB = ({number}) => {
   return (
@@ -12,7 +13,7 @@ const WhatsappFAB = ({number}) => {
       whileHover={{ scale: 1.2, rotate: 10 }}
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.3 }}
-      className="fixed bottom-6 right-6 bg-green-wa hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg"
+      className="whatsapp md: mb-10 fixed bottom-6 right-6 bg-green-wa hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg"
       aria-label="Chat on WhatsApp"
     >
 

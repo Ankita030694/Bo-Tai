@@ -27,23 +27,23 @@ import image15 from "../../assets/newPhotos/15.jpg";
 import image16 from "../../assets/newPhotos/16.jpg";
 import image17 from "../../assets/newPhotos/17.jpg";
 import image18 from "../../assets/newPhotos/18.jpg"
-import image19 from "../../assets/newPhotos/19.jpg";
-import image20 from "../../assets/newPhotos/20.jpg";
+// import image19 from "../../assets/newPhotos/19.jpg";
+// import image20 from "../../assets/newPhotos/20.jpg";
 import image21 from "../../assets/newPhotos/21.jpg";
 import image22 from "../../assets/newPhotos/22.jpg";
 import image23 from "../../assets/newPhotos/23.jpg";
-import image24 from "../../assets/newPhotos/24.jpg";
+// import image24 from "../../assets/newPhotos/24.jpg";
 import image25 from "../../assets/newPhotos/25.jpg";
 import image26 from "../../assets/newPhotos/26.jpg";
 import image27 from "../../assets/newPhotos/27.jpg";
 import image28 from "../../assets/newPhotos/28.jpg";
-import image29 from "../../assets/newPhotos/29.jpg";
+// import image29 from "../../assets/newPhotos/29.jpg";
 import image30 from "../../assets/newPhotos/30.jpg";
 import image31 from "../../assets/newPhotos/31.jpg";
 import image32 from "../../assets/newPhotos/32.jpg";
 import image33 from "../../assets/newPhotos/33.jpg";
 import image34 from "../../assets/newPhotos/34.jpg";
-import image35 from "../../assets/newPhotos/35.jpg";
+// import image35 from "../../assets/newPhotos/35.jpg";
 import image36 from "../../assets/newPhotos/36.jpg";
 import image37 from "../../assets/newPhotos/37.jpg";
 import image38 from "../../assets/newPhotos/38.jpg";
@@ -104,7 +104,6 @@ const HeroSection = () => {
     </div>
   );
 };
-
 const GallerySection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -128,23 +127,23 @@ const GallerySection = () => {
     { id: 25, image: image16, title: "Artistic Drinks" },
     { id: 26, image: image17, title: "Artistic Drinks" },
     { id: 27, image: image18, title: 'Artistic Drinks' },
-    { id: 28, image: image19, title: "Artistic Drinks" },
-    { id: 29, image: image20, title: "Artistic Drinks" },
+    // { id: 28, image: image19, title: "Artistic Drinks" },
+    // { id: 29, image: image20, title: "Artistic Drinks" },
     { id: 30, image: image21, title: "Artistic Drinks" },
     { id: 31, image: image22, title: "Artistic Drinks" },
     { id: 32, image: image23, title: "Artistic Drinks" },
-    { id: 33, image: image24, title: "Artistic Drinks" },
+    // { id: 33, image: image24, title: "Artistic Drinks" },
     { id: 34, image: image25, title: "Artistic Drinks" },
     { id: 35, image: image26, title: "Artistic Drinks" },
     { id: 36, image: image27, title: "Artistic Drinks" },
     { id: 37, image: image28, title: "Artistic Drinks" },
-    { id: 38, image: image29, title: "Artistic Drinks" },
+    // { id: 38, image: image29, title: "Artistic Drinks" },
     { id: 39, image: image30, title: "Artistic Drinks" },
     { id: 40, image: image31, title: "Artistic Drinks" },
     { id: 41, image: image32, title: "Artistic Drinks" },
     { id: 42, image: image33, title: "Artistic Drinks" },
     { id: 43, image: image34, title: "Artistic Drinks" },
-    { id: 44, image: image35, title: "Artistic Drinks" },
+    // { id: 44, image: image35, title: "Artistic Drinks" },
     { id: 45, image: image36, title: "Artistic Drinks" },
     { id: 46, image: image37, title: "Artistic Drinks" },
     { id: 47, image: image38, title: "Artistic Drinks" },
@@ -176,7 +175,7 @@ const GallerySection = () => {
     if (isAutoPlaying) {
       interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % totalSlides);
-      }, 4000);
+      }, 3000);
     }
     return () => clearInterval(interval);
   }, [isAutoPlaying, totalSlides]);
@@ -209,8 +208,8 @@ const GallerySection = () => {
                     <img
                       src={item.image}
                       alt={item.title}
-                      loading="lazy" 
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading="eager"
+                      className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -254,6 +253,7 @@ const GallerySection = () => {
     </div>
   );
 };
+
 
 const AboutGallery = () => {
   return (
