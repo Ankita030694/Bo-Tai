@@ -88,15 +88,13 @@ const HeroSection = () => {
 
         <div className="relative z-10">
           <h1 className="text-3xl sm:text-5xl text-center font-bold text-[#4A3427] mb-6 sm:mb-8">
-            ENJOY EXCEPTIONAL TASTE
+            BO-TAI DELHI
           </h1>
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-base sm:text-lg text-[#4A3427] leading-relaxed">
-              BO TAI, DELHI - bo tai, a Modern Thai bar & Grill concept is a
-              perfect blend of cosmopolitan italian design with the vibrance of
-              thai hues. a smart casual vibe clubbed with a serendipitous
-              coziness, bo-tai is designed for the young and socially smart
-              champagne set.
+             BO-TAI, DELHI
+
+Part of the renowned Massive Restaurants group, Bo-Tai is a modern Thai bar and grill that offers an exceptional dining experience. Known for its vibrant ambiance and innovative menu, Bo-Tai seamlessly blends Thai flavors with global influences. Whether you're savoring its exquisite cuisine or enjoying its chic setting, Bo-Tai is the perfect destination for those who appreciate culinary excellence and contemporary elegance
             </p>
           </div>
         </div>
