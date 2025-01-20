@@ -30,10 +30,7 @@ const OurLocation = () => {
       {/* Header Text */}
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <p className="text-lg text-black pt-12">
-          BO TAI, DELHI - bo tai, a Modern Thai bar & Grill concept is a perfect blend of
-          cosmopolitan italian design with the vibrance of thai hues. a smart casual
-          vibe clubbed with a serendipitous coziness, bo-tai is designed for the young
-          and socially smart champagne set.
+          Regarded as ‘the Prince of Indian cuisine’, Zorawar Kalra, after the successful exit from his maiden venture credited with introducing one of the most awarded regional cuisine restaurant concepts in India, launched Massive Restaurants Pvt. Ltd. in December 2012. Massive Restaurants, spearheaded by Mr. Kalra and mentored by his illustrious father & Czar of Indian Cuisine – Jiggs Kalra, was established with an aim to develop India’s premier brands of restaurants that specialize in targeting all segments of the market, while showcasing the evolution of Indian cuisine and putting Indian food on the global palate permanently. The Company currently operates under critically acclaimed, multi award winning brand verticals of premium Fine-Dining Restaurants with the signature Masala Library by Jiggs Kalra, the Smart-Casual Dining Restaurants with the brand Made in Punjab, the modern Indian bistro concept Farzi Café and modern pan-Asian bistro concept Pa Pa Ya, cuisine agnostic modern ‘freestyle’ bar & kitchen – KODE, high energy dining concept – MasalaBar, offering a cutting edge, post-modern & stylish bar, for an immersive dining experience; and unlimited grill and brewery concept – BBQ’D. Massive Restaurants raises the bar a not­ch higher with the launch of its brand new Modern Thai Bar & Grill concept BO-TAI. With each new concept and new outlet we move one step closer to our vision and continue to revolutionize Indian food and night life.
         </p>
       </div>
 
