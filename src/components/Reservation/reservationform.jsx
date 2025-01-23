@@ -12,7 +12,7 @@ const ReservationForm = () => {
   const [showThankYou, setShowThankYou] = useState(false);
   const [loading, setLoading] = useState(true);
   const [slotName, setslotName] = useState("Lunch");
-  const [persons, setPersons] = useState(0);
+  const [persons, setPersons] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,7 +56,7 @@ const ReservationForm = () => {
   };
   const handleCounter = (e) => {
     const value = e.target.value;
-    if (value >= 1 && value <= 150) {
+    if (value >= 0 && value <= 150) {
       setPersons(Number(value));
     }
   };
@@ -334,9 +334,7 @@ const ReservationForm = () => {
                   value={persons}
                   onChange={handleCounter}
                   className="w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300"
-                  min="1"
-                  max="150"
-                  placeholder="Person"
+                  placeholder="Persons"
                 />
 
                 {/* Increment Button */}
