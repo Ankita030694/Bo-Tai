@@ -50,7 +50,7 @@ const ReservationForm = () => {
     // **Filtering slots based on lunch time (11 AM to 5 PM)**
     const filteredSlots = selectedOutlet.timeSlots.filter((slot) => {
       const hour = parseTime(slot);
-      return hour >= 11 && hour < 17; // Lunch time: 11 AM - 5 PM
+      return hour >= 11 && hour < 18; // Lunch time: 11 AM - 5 PM
     });
     setTimeSlots(filteredSlots);
   };
@@ -81,7 +81,7 @@ const ReservationForm = () => {
     // **Filtering slots based on dinner time (5 PM to 11 PM)**
     const filteredSlots = selectedOutlet.timeSlots.filter((slot) => {
       const hour = parseTime(slot);
-      return hour >= 17 && hour < 24; // Dinner time: 5 PM - 11 PM
+      return hour >= 18 && hour < 24; // Dinner time: 5 PM - 11 PM
     });
     setTimeSlots(filteredSlots);
   };
