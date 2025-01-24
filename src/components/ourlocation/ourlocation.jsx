@@ -53,7 +53,7 @@ const responsive = {
 };
 const OurLocation = () => {
   return (
-    <div className="w-full mx-auto px-4 bg-brown-300 m-10 ">
+    <div className="w-full mx-auto px-4 bg-brown-300 m-10 align-items-center">
       {/* Header Text */}
       <div className="text-center  max-w-6xl mx-auto">
         <p className="text-lg text-black pt-12">

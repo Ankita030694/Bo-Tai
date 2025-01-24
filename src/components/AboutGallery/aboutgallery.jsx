@@ -66,7 +66,8 @@ import image54 from "../../assets/newPhotos/54.jpg";
 import image55 from "../../assets/newPhotos/55.jpg";
 import image56 from "../../assets/newPhotos/56.jpg";
 import image57 from "../../assets/newPhotos/57.jpg";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 const HeroSection = () => {
   return (
     <div className="bg-brown-400 px-4 py-16 sm:py-20 relative overflow-hidden">
@@ -190,64 +191,222 @@ const GallerySection = () => {
     const startIndex = currentIndex * 3;
     return images.slice(startIndex, startIndex + 3);
   };
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
-    <div className="bg-brown-300 py-16 sm:py-20">
-      <div className="max-w-6xl mx-auto">
-        <div className="relative">
-          <div className="overflow-hidden">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
-              {getCurrentImages().map((item) => (
-                <div
-                  key={item.id}
-                  className="relative overflow-hidden rounded-lg group cursor-pointer"
-                >
-                  <div className="w-full h-full">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="eager"
-                      className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        {/* <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3> */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    // <div className="bg-brown-300 py-16 sm:py-20">
+    //   <div className="max-w-6xl mx-auto">
+    //     <div className="relative">
+    //       <div className="overflow-hidden">
+    //         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
+    //           {getCurrentImages().map((item) => (
+    //             <div
+    //               key={item.id}
+    //               className="relative overflow-hidden rounded-lg group cursor-pointer"
+    //             >
+    //               <div className="w-full h-full">
+    //                 <img
+    //                   src={item.image}
+    //                   alt={item.title}
+    //                   loading="eager"
+    //                   className="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
+    //                 />
+    //                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    //                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+    //                     <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3>
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           ))}
+    //         </div>
+    //       </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute -left-8 sm:-left-12 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-          >
-            ←
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute -right-8 sm:-right-12 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-          >
-            →
-          </button>
+    //       Navigation Arrows
+    //       <button
+    //         onClick={prevSlide}
+    //         className="absolute -left-8 sm:-left-12 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+    //       >
+    //         ←
+    //       </button>
+    //       <button
+    //         onClick={nextSlide}
+    //         className="absolute -right-8 sm:-right-12 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+    //       >
+    //         →
+    //       </button>
 
-          {/* Dots Navigation */}
-          <div className="flex justify-center mt-8 gap-2">
-            {[...Array(totalSlides)].map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  currentIndex === index ? "bg-[#F4511E]" : "bg-gray-300"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+    //       Dots Navigation
+    //       <div className="flex justify-center mt-8 gap-2">
+    //         {[...Array(totalSlides)].map((_, index) => (
+    //           <button
+    //             key={index}
+    //             onClick={() => setCurrentIndex(index)}
+    //             className={`w-2 h-2 rounded-full transition-colors ${
+    //               currentIndex === index ? "bg-[#F4511E]" : "bg-gray-300"
+    //             }`}
+    //           />
+    //         ))}
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="mb-5">
+    <Carousel 
+          responsive={responsive}
+          infinite={true}>
+              <div className="about_carousel">
+                <img src={image1} alt="" />
+              </div>
+              <div className="about_carousel">
+                <img src={image2} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image3} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image4} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image5} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image6} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image7} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image8} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image9} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image10} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image11} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image12} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image13} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image14} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image15} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image16} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image17} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image18} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image21} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image22} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image23} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image25} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image26} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image27} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image28} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image30} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image31} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image32} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image33} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image34} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image36} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image37} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image38} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image39} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image40} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image41} alt=""/>
+              </div>
+
+              <div className="about_carousel">
+                <img src={image42} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image43} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image44} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image45} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image46} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image47} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image48} alt=""/>
+              </div>
+              <div className="about_carousel">
+                <img src={image49} alt=""/>
+              </div>
+            </Carousel>
     </div>
   );
 };
