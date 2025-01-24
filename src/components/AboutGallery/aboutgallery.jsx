@@ -89,7 +89,7 @@ const HeroSection = () => {
 
         <div className="relative z-10">
           <h1 className="text-3xl sm:text-5xl text-center font-bold text-[#4A3427] mb-6 sm:mb-8">
-            BO-TAI DELHI
+            BO-TAI
           </h1>
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-base sm:text-lg text-[#4A3427] leading-relaxed">

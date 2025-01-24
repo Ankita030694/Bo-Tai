@@ -3,6 +3,8 @@ import logo from "../../assets/logo.svg";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaCross, FaHamburger } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
+import pdf from "../../assets/BoTai_FoodMenu.pdf";
+
 const NavbarTwo = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,7 +14,7 @@ const NavbarTwo = () => {
     { name: "ABOUT", path: "/about" },
     // { name: "RESERVATION", path: "/reservation" },
     { name: "CONTACT", path: "/contact" },
-    { name: "MENU", path: "/menu.pdf", newTab: true },
+    { name: "MENU", path: pdf, newTab: true },
   ];
   useEffect(() => {
     const handleScroll = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
-import pdf from "../../assets/menu.pdf";
+import pdf from "../../assets/BoTai_FoodMenu.pdf";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

@@ -17,7 +17,7 @@ const ReservationForm = () => {
     name: "",
     email: "",
     phone: "",
-    persons: "1",
+    persons: "",
     date: "",
     timeSlot: "",
     timing: "",
@@ -55,9 +55,10 @@ const ReservationForm = () => {
     setTimeSlots(filteredSlots);
   };
   const handleCounter = (e) => {
-    const value = e.target.value;
-    if (value >= 0 && value <= 150) {
-      setPersons(Number(value));
+    const value = parseInt(e.target.value, 10) || 0;
+    if (value >= 1 && value <= 150) {
+      setPersons(value);
+      handleInputChange("persons", value);
     }
   };
 
@@ -154,7 +155,7 @@ const ReservationForm = () => {
           name: "",
           email: "",
           phone: "",
-          persons: "1",
+          persons: "",
           date: "",
           timeSlot: "",
           timing: "",
@@ -336,7 +337,6 @@ const ReservationForm = () => {
                   className="w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300"
                   placeholder="Pax"
                 />
-
                 {/* Increment Button */}
                 <button
                   onClick={increment}
