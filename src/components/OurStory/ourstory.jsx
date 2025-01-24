@@ -89,8 +89,8 @@ const OurStory = () => {
               viewport={{ once: true, margin: "-50px" }}
               variants={statCardVariants}
             >
-              <div className="text-4xl font-bold mb-2">4+</div>
-              <div className="text-xl">Outlets across in India</div>
+              {/* <div className="text-4xl font-bold mb-2">Handmade Syrups</div> */}
+              <div className="text-xl text-center">Handmade Syrups</div>
             </motion.div>
 
             {/* Awards stat */}
@@ -101,8 +101,8 @@ const OurStory = () => {
               viewport={{ once: true, margin: "-50px" }}
               variants={statCardVariants}
             >
-              <div className="text-4xl font-bold mb-2">10+</div>
-              <div className="text-xl">Awards and certificates</div>
+              {/* <div className="text-4xl font-bold mb-2">Live Sushi Bar</div> */}
+              <div className="text-xl text-center" >Live Sushi Bar</div>
             </motion.div>
 
             {/* Additional Awards stat */}
@@ -113,8 +113,8 @@ const OurStory = () => {
               viewport={{ once: true, margin: "-50px" }}
               variants={statCardVariants}
             >
-              <div className="text-4xl font-bold mb-2">10+</div>
-              <div className="text-xl">Awards and certificates</div>
+              {/* <div className="text-4xl font-bold mb-2">Infinity View</div> */}
+              <div className="text-xl text-center">Infinity View</div>
             </motion.div>
           </div>
         </div>

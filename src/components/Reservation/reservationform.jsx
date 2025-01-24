@@ -13,12 +13,13 @@ const ReservationForm = () => {
   const [loading, setLoading] = useState(true);
   const [slotName, setslotName] = useState("Lunch");
   const [persons, setPersons] = useState(null);
+  const today = new Date().toISOString().split("T")[0];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     persons: "",
-    date: "",
+    date: today,
     timeSlot: "",
     timing: "",
   });
@@ -327,7 +328,10 @@ const ReservationForm = () => {
                 <button
                   onClick={decrement}
                   className="px-2 py-2 bg-gray-200 rounded-md focus:outline-none"
-                > - </button>
+                >
+                  {" "}
+                  -{" "}
+                </button>
 
                 {/* Input for person count with manual entry */}
                 <input
@@ -341,7 +345,10 @@ const ReservationForm = () => {
                 <button
                   onClick={increment}
                   className="px-2 py-2 bg-gray-200 rounded-md focus:outline-none"
-                > + </button>
+                >
+                  {" "}
+                  +{" "}
+                </button>
               </div>
 
               {/* <p>
@@ -355,7 +362,7 @@ const ReservationForm = () => {
               type="date"
               placeholder="DD-MM-YYYY"
               value={formData.date}
-              min={new Date().toISOString().split("T")[0]}
+              min={today}
               onChange={(e) => handleInputChange("date", e.target.value)}
               className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 ${
                 errors.date ? "border-red-500 border" : "border-gray-300"
