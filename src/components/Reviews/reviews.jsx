@@ -38,7 +38,7 @@ const Reviews = () => {
             <img 
               src={review2} 
               alt="Sushi" 
-              className="shadow-xl max-w-full sm:w-80 md:w-full"
+              className="shadow-xl max-w-full sm:w-80 md:w-full sushi"
             />
           </motion.div>
 

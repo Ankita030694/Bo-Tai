@@ -325,7 +325,7 @@ const ReservationForm = () => {
                 {/* Decrement Button */}
                 <button
                   onClick={decrement}
-                  className="px-4 py-2 bg-gray-200 rounded-md focus:outline-none"
+                  className="px-2 py-2 bg-gray-200 rounded-md focus:outline-none"
                 > - </button>
 
                 {/* Input for person count with manual entry */}
@@ -334,13 +334,13 @@ const ReservationForm = () => {
                   value={persons}
                   onChange={handleCounter}
                   className="w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300"
-                  placeholder="Persons"
+                  placeholder="Pax"
                 />
 
                 {/* Increment Button */}
                 <button
                   onClick={increment}
-                  className="px-4 py-2 bg-gray-200 rounded-md focus:outline-none"
+                  className="px-2 py-2 bg-gray-200 rounded-md focus:outline-none"
                 > + </button>
               </div>
 

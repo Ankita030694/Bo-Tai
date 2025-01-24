@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import story from '../../assets/story2.png'
+import location from "../../assets/about/location3.png"
 const OurStory = () => {
   const titleVariants = {
     hidden: { 
@@ -52,12 +53,12 @@ const OurStory = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
         {/* Left side - Title */}
         <motion.div 
-          className="md:w-1/3"
+          className="md:w-1/3 ourstimage"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={titleVariants}
-          style={{ backgroundImage: `url(${story})` }}
+          style={{ backgroundImage: `url(${location})` }}
         >
           
         </motion.div>

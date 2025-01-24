@@ -1,0 +1,9 @@
+.ourstimage{
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 767px){
+    .sushi{
+        display: none;
+    }
+}

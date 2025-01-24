@@ -50,7 +50,7 @@ const Home = () => {
           transition={{ duration: 0.5 }}
         >
           <NavbarTwo />
-          <Header />
+          <Header /> 
           <OurStory />
           <BoTaiGallery />
           <ReservationBanner />
