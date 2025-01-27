@@ -57,14 +57,12 @@ function ReservationDetails() {
 
     for (const region of possibleRegions) {
       parsedNumber = parsePhoneNumberFromString(phone, region);
-      if (parsedNumber && parsedNumber.isValid()) {
+      
         return `+${
           parsedNumber.countryCallingCode
         } ${parsedNumber.formatNational()}`;
-      }
+      
     }
-
-    return `Invalid Number`;
   };
 
   // Filter reservations by selected outlet and search query
