@@ -52,7 +52,7 @@ function ReservationDetails() {
   const formatPhoneNumber = (phone) => {
     if (!phone) return "N/A";
 
-    const possibleRegions = ["US", "IN", "GB", "AU"]; // Add other likely countries
+    const possibleRegions = ["US", "IN", "GB", "AU", "IT"]; // Add other likely countries
     let parsedNumber;
 
     for (const region of possibleRegions) {

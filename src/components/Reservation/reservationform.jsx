@@ -4,7 +4,7 @@ import reserve from "../../assets/formbg.png";
 import loadingAnimation from "../../assets/loader-old.json";
 import Lottie from "lottie-react";
 import "./reservation.css";
-
+import PhoneInput from "react-phone-number-input";
 
 const ReservationForm = () => {
   const [outlets, setOutlets] = useState([]);
@@ -69,7 +69,7 @@ const ReservationForm = () => {
       handleInputChange("persons", 150);
     }
   };
-  
+
   // Increment persons value
   const increment = () => {
     if (persons < 150) {
@@ -78,7 +78,7 @@ const ReservationForm = () => {
       handleInputChange("persons", newValue);
     }
   };
-  
+
   // Decrement persons value
   const decrement = () => {
     if (persons > 1) {
@@ -87,7 +87,7 @@ const ReservationForm = () => {
       handleInputChange("persons", newValue);
     }
   };
-  
+
   const handleDinnerTime = (field, slot) => {
     console.log("Dinner Time");
     handleInputChange("timing", slot);
@@ -288,24 +288,65 @@ const ReservationForm = () => {
           </div>
 
           <div className="space-y-2">
-            <input
-              type="tel"
-              inputMode="numeric" // Ensures number input on mobile
-              maxLength={10} // Limiting the number of characters
-              placeholder="Phone number"
-              value={formData.phone}
-              onChange={(e) => {
-                const value = e.target.value;
+            <div className="col-md-12 w-full flex">
+              <div className="flex-1 pr-2">
+                {/* Dropdown for country code with names */}
+                <select
+                  value={formData.countryCode || "+91"} // Default to '+91' or use state
+                  onChange={(e) => {
+                    const selectedCode = e.target.value;
+                    handleInputChange("countryCode", selectedCode);
 
-                // Check if the input contains only numbers and enforce max length
-                if (/^\d*$/.test(value) && value.length <= 10) {
-                  handleInputChange("phone", value);
-                }
-              }}
-              className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 ${
-                errors.phone ? "border-red-500 border" : "border-gray-300"
-              }`}
-            />
+                    // Add country code only if not already present
+                    if (!formData.phone.startsWith(selectedCode)) {
+                      handleInputChange(
+                        "phone",
+                        selectedCode + formData.phone.replace(/^\+\d+/, "")
+                      );
+                    }
+                  }}
+                  className="w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 border-gray-300"
+                >
+                  <option value="+91">+91 India</option>
+                  <option value="+1">+1 USA</option>
+                  <option value="+44">+44 UK</option>
+                  <option value="+61">+61 Australia</option>
+                  <option value="+49">+49 Germany</option>
+                  <option value="+81">+81 Japan</option>
+                  <option value="+33">+33 France</option>
+                  <option value="+39">+39 Italy</option>
+                  <option value="+86">+86 China</option>
+                  <option value="+971">+971 UAE</option>
+                  <option value="+55">+55 Brazil</option>
+                  <option value="+7">+7 Russia</option>
+                  <option value="+27">+27 South Africa</option>
+                </select>
+              </div>
+
+              <div className="flex-1 pl-2">
+                {/* Phone number input with auto country code */}
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  maxLength={13} // Allows country code + 10-digit number
+                  placeholder="Phone number"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    // Allow only numbers and limit length
+                    if (
+                      /^\d*$/.test(value.replace(/^\+/, "")) &&
+                      value.length <= 13
+                    ) {
+                      handleInputChange("phone", value);
+                    }
+                  }}
+                  className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 ${
+                    errors.phone ? "border-red-500 border" : "border-gray-300"
+                  }`}
+                />
+              </div>
+            </div>
 
             {errors.phone && (
               <p className="text-red-500 text-sm">{errors.phone}</p>

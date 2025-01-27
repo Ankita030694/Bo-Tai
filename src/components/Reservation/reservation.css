@@ -1,3 +1,17 @@
 .txt{
     color: rgb(50 28 18 / var(--tw-bg-opacity, 1)) !important;
 }
+.hide-flag .react-phone-number-input__icon {
+    display: none;
+  }
+  .hide-flag .react-phone-number-input__icon {
+    display: none !important;
+  }
+  
+  /* Optionally, you may need to hide the dropdown arrow */
+  .hide-flag .react-phone-number-input__dropdown {
+    display: none !important;
+  }
+  .PhoneInputCountryIconImg{
+    display: none !important;
+  }
