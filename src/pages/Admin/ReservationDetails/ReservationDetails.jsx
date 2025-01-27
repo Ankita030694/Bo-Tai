@@ -8,7 +8,7 @@ function ReservationDetails() {
   const [outlets, setOutlets] = useState([]);
   const [selectedOutlet, setSelectedOutlet] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+  const [sortConfig, setSortConfig] = useState({ key: "date", direction: "asc" });
 
   // Fetch reservations and extract unique outlets
   async function GetReservations() {
@@ -68,14 +68,19 @@ function ReservationDetails() {
     // Apply sorting
     if (sortConfig.key) {
       filtered = [...filtered].sort((a, b) => {
-        const valueA =
-          sortConfig.key === "createdAt"
-            ? a[sortConfig.key]?.seconds
-            : a[sortConfig.key];
-        const valueB =
-          sortConfig.key === "createdAt"
-            ? b[sortConfig.key]?.seconds
-            : b[sortConfig.key];
+        let valueA, valueB;
+
+        if (sortConfig.key === "date") {
+          // Convert date-time string to comparable format (timestamp)
+          valueA = new Date(`${a.date} ${a.timeSlot}`).getTime();
+          valueB = new Date(`${b.date} ${b.timeSlot}`).getTime();
+        } else if (sortConfig.key === "createdAt") {
+          valueA = a.createdAt ? a.createdAt.seconds : 0;
+          valueB = b.createdAt ? b.createdAt.seconds : 0;
+        } else {
+          valueA = a[sortConfig.key];
+          valueB = b[sortConfig.key];
+        }
 
         if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
         if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
@@ -93,7 +98,6 @@ function ReservationDetails() {
       direction: prev.key === key && prev.direction === "asc" ? "desc" : "asc",
     }));
   };
-
   useEffect(() => {
     GetReservations();
   }, []);
@@ -110,7 +114,9 @@ function ReservationDetails() {
           {/* Filters and Search */}
           <div className="flex flex-row-reverse flex-wrap items-center justify-between mb-6 gap-4">
             <div>
-              <button className="bg-white rounded-md p-2" onClick={downloadCSV}>Download CSV</button>
+              <button className="bg-white rounded-md p-2" onClick={downloadCSV}>
+                Download CSV
+              </button>
             </div>
             <div>
               <select
