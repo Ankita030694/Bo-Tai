@@ -5,6 +5,7 @@ import loadingAnimation from "../../assets/loader-old.json";
 import Lottie from "lottie-react";
 import "./reservation.css";
 
+
 const ReservationForm = () => {
   const [outlets, setOutlets] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
@@ -104,8 +105,11 @@ const ReservationForm = () => {
     setOutlets(outletsData);
     setLoading(false);
     if (outletsData.length > 0) {
+      const sortedTimeSlots = outletsData[0].timeSlots.sort((a, b) => {
+        return parseTime(a) - parseTime(b); // Sort time slots in ascending order
+      });
       setSelectedOutlet(outletsData[0]);
-      setTimeSlots(outletsData[0].timeSlots);
+      setTimeSlots(sortedTimeSlots);
     }
   }
 
@@ -159,6 +163,7 @@ const ReservationForm = () => {
           timeSlot: formData.timeSlot,
           date: formData.date,
           timing: formData.timing,
+          createdAt: Date.now(),
         };
 
         await FirestoreService.add("Reservations", reservation);

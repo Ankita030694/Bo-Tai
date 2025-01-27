@@ -9,7 +9,7 @@ function ReservationDetails() {
   const [selectedOutlet, setSelectedOutlet] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortConfig, setSortConfig] = useState({
-    key: "date",
+    key: "createdAt",
     direction: "asc",
   });
 
@@ -91,21 +91,22 @@ function ReservationDetails() {
       filtered = [...filtered].sort((a, b) => {
         let valueA, valueB;
 
-        if (sortConfig.key === "date") {
-          // Convert date-time string to comparable format (timestamp)
-          valueA = new Date(`${a.date} ${a.timeSlot}`).getTime();
-          valueB = new Date(`${b.date} ${b.timeSlot}`).getTime();
-        } else if (sortConfig.key === "createdAt") {
-          valueA = a.createdAt ? a.createdAt.seconds : 0;
-          valueB = b.createdAt ? b.createdAt.seconds : 0;
-        } else {
-          valueA = a[sortConfig.key];
-          valueB = b[sortConfig.key];
-        }
+      if (sortConfig.key === "date") {
+        // Convert date-time string to comparable format (timestamp)
+        valueA = new Date(`${a.date} ${a.timeSlot}`).getTime();
+        valueB = new Date(`${b.date} ${b.timeSlot}`).getTime();
+      } else if (sortConfig.key === "createdAt") {
+        // Sort by Firebase createdAt timestamp
+        valueA = a.createdAt ? a.createdAt.seconds : 0; // Firebase timestamp seconds
+        valueB = b.createdAt ? b.createdAt.seconds : 0;
+      } else {
+        valueA = a[sortConfig.key];
+        valueB = b[sortConfig.key];
+      }
 
-        if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
-        if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
-        return 0;
+      if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
+      if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
+      return 0;
       });
     }
 
@@ -229,11 +230,7 @@ function ReservationDetails() {
                         {res.outlet.title}
                       </td>
                       <td className="py-3 px-6 text-left">
-                        {res.createdAt
-                          ? new Date(
-                              res.createdAt.seconds * 1000
-                            ).toLocaleString()
-                          : "N/A"}
+                        {res.createdAt}
                       </td>
                     </tr>
                   ))
