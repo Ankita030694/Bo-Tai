@@ -5,8 +5,9 @@ import loadingAnimation from "../../assets/loader-old.json";
 import Lottie from "lottie-react";
 import "./reservation.css";
 import PhoneInput from "react-phone-number-input";
-
+import { useNavigate } from "react-router-dom";
 const ReservationForm = () => {
+  const navigate = useNavigate();
   const [outlets, setOutlets] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedOutlet, setSelectedOutlet] = useState(null);
@@ -167,7 +168,8 @@ const ReservationForm = () => {
         };
 
         await FirestoreService.add("Reservations", reservation);
-        setShowThankYou(true);
+        // setShowThankYou(true);
+        navigate("/thanks");
         setFormData({
           name: "",
           email: "",
@@ -208,29 +210,29 @@ const ReservationForm = () => {
     minHeight: "100vh",
   };
 
-  if (showThankYou) {
-    return (
-      <div
-        style={containerStyle}
-        className="flex items-center justify-center w-full"
-      >
-        <div className="w-full max-w-2xl mx-4 bg-brown-300 bg-opacity-opacity-100 rounded-lg shadow-lg p-16 text-center">
-          <h2 className="text-3xl font-bold text-orange-100 mb-4">
-            Thank You!
-          </h2>
-          <p className="text-orange-100 font-medium mb-6">
-            Your reservation has been successfully submitted.
-          </p>
-          <button
-            onClick={() => setShowThankYou(false)}
-            className="bg-orange-100 hover:bg-brown-400 hover:text-orange-100 text-brown-100 font-medium py-2 px-6 rounded-lg transition-colors duration-200"
-          >
-            Make Another Reservation
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // if (showThankYou) {
+  //   return (
+  //     <div
+  //       style={containerStyle}
+  //       className="flex items-center justify-center w-full"
+  //     >
+  //       <div className="w-full max-w-2xl mx-4 bg-brown-300 bg-opacity-opacity-100 rounded-lg shadow-lg p-16 text-center">
+  //         <h2 className="text-3xl font-bold text-orange-100 mb-4">
+  //           Thank You!
+  //         </h2>
+  //         <p className="text-orange-100 font-medium mb-6">
+  //           Your reservation has been successfully submitted.
+  //         </p>
+  //         <button
+  //           onClick={() => setShowThankYou(false)}
+  //           className="bg-orange-100 hover:bg-brown-400 hover:text-orange-100 text-brown-100 font-medium py-2 px-6 rounded-lg transition-colors duration-200"
+  //         >
+  //           Make Another Reservation
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div

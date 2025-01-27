@@ -10,6 +10,7 @@ import AdminContact from './pages/Admin/Contact/Contact';
 import AddOutlet from './pages/Admin/AddOutlet/AddOutlet';
 import Login from './pages/Login/Login';
 import './App.css'
+import Thankyou from './components/Thankyou/Thankyou';
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           <Route path= "/admin/contact"  element={<AdminContact/>} />
           <Route path= "/admin/add/outlet"  element={<AddOutlet/>} />
           <Route path= "/login"  element={<Login/>} />
+          <Route path= "/thanks"  element={<Thankyou/>} />
 
          
         </Routes>
