@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import AdminNavbar from "../../../components/Navbar/navbarAdmin";
 import FirestoreService from "../../../services/firestore-service";
-
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 function ReservationDetails() {
   const [reservations, setReservations] = useState([]);
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [outlets, setOutlets] = useState([]);
   const [selectedOutlet, setSelectedOutlet] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortConfig, setSortConfig] = useState({ key: "date", direction: "asc" });
+  const [sortConfig, setSortConfig] = useState({
+    key: "date",
+    direction: "asc",
+  });
 
   // Fetch reservations and extract unique outlets
   async function GetReservations() {
@@ -46,6 +49,24 @@ function ReservationDetails() {
     link.click();
     document.body.removeChild(link);
   };
+  const formatPhoneNumber = (phone) => {
+    if (!phone) return "N/A";
+
+    const possibleRegions = ["US", "IN", "GB", "AU"]; // Add other likely countries
+    let parsedNumber;
+
+    for (const region of possibleRegions) {
+      parsedNumber = parsePhoneNumberFromString(phone, region);
+      if (parsedNumber && parsedNumber.isValid()) {
+        return `+${
+          parsedNumber.countryCallingCode
+        } ${parsedNumber.formatNational()}`;
+      }
+    }
+
+    return `Invalid Number`;
+  };
+
   // Filter reservations by selected outlet and search query
   useEffect(() => {
     let filtered = reservations;
@@ -133,7 +154,7 @@ function ReservationDetails() {
               </select>
             </div>
             <div>
-              <input type="date" />
+              <input type="date" className="bg-white rounded-md p-2" />
             </div>
 
             <div>
@@ -194,7 +215,11 @@ function ReservationDetails() {
                     >
                       <td className="py-3 px-6 text-left">{res.name}</td>
                       <td className="py-3 px-6 text-left">{res.email}</td>
-                      <td className="py-3 px-6 text-left">{res.phone}</td>
+                      <td className="py-3 px-6 text-left">
+                        {formatPhoneNumber(res.phone)}
+                        {/* {res.phone} */}
+                      </td>
+
                       <td className="py-3 px-6 text-left">{res.persons}</td>
                       <td className="py-3 px-6 text-left">{res.timing}</td>
                       <td className="py-3 px-6 text-left">
