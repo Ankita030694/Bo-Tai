@@ -91,22 +91,26 @@ function ReservationDetails() {
       filtered = [...filtered].sort((a, b) => {
         let valueA, valueB;
 
-      if (sortConfig.key === "date") {
-        // Convert date-time string to comparable format (timestamp)
-        valueA = new Date(`${a.date} ${a.timeSlot}`).getTime();
-        valueB = new Date(`${b.date} ${b.timeSlot}`).getTime();
-      } else if (sortConfig.key === "createdAt") {
-        // Sort by Firebase createdAt timestamp
-        valueA = a.createdAt ? a.createdAt.seconds : 0; // Firebase timestamp seconds
-        valueB = b.createdAt ? b.createdAt.seconds : 0;
-      } else {
-        valueA = a[sortConfig.key];
-        valueB = b[sortConfig.key];
-      }
+        if (sortConfig.key === "date") {
+          // Convert date and timeSlot string to timestamp
+          valueA = new Date(`${a.date} ${a.timeSlot}`).getTime();
+          valueB = new Date(`${b.date} ${b.timeSlot}`).getTime();
+        } else if (sortConfig.key === "createdAt") {
+          // Ensure both timestamps are valid and convert to milliseconds
+          valueA = b.createdAt || 0;
+          valueB = a.createdAt || 0;
+        } else {
+          valueA = a[sortConfig.key]
+            ? a[sortConfig.key].toString().toLowerCase()
+            : "";
+          valueB = b[sortConfig.key]
+            ? b[sortConfig.key].toString().toLowerCase()
+            : "";
+        }
 
-      if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
-      if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
-      return 0;
+        if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
+        if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
+        return 0;
       });
     }
 
@@ -127,7 +131,7 @@ function ReservationDetails() {
   return (
     <>
       <AdminNavbar />
-      <main className="w-screen h-screen bg-brown p-4 pt-52">
+      <main className="w-screen h-auto bg-brown p-4 pt-52">
         <div className="container mx-auto">
           <h1 className="text-2xl font-bold text-gray-800 mb-4 text-brown-100">
             Reservation Details
@@ -229,9 +233,7 @@ function ReservationDetails() {
                       <td className="py-3 px-6 text-left">
                         {res.outlet.title}
                       </td>
-                      <td className="py-3 px-6 text-left">
-                        {res.createdAt}
-                      </td>
+                      <td className="py-3 px-6 text-left">{res.createdAt}</td>
                     </tr>
                   ))
                 ) : (
