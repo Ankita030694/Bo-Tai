@@ -60,22 +60,33 @@ const ReservationForm = () => {
     if (value >= 1 && value <= 150) {
       setPersons(value);
       handleInputChange("persons", value);
+    } else if (value < 1) {
+      setPersons(1);
+      handleInputChange("persons", 1);
+    } else if (value > 150) {
+      setPersons(150);
+      handleInputChange("persons", 150);
     }
   };
-
+  
   // Increment persons value
   const increment = () => {
     if (persons < 150) {
-      setPersons(persons + 1);
+      const newValue = persons + 1;
+      setPersons(newValue);
+      handleInputChange("persons", newValue);
     }
   };
-
+  
   // Decrement persons value
   const decrement = () => {
-    if (persons > 0) {
-      setPersons(persons - 1);
+    if (persons > 1) {
+      const newValue = persons - 1;
+      setPersons(newValue);
+      handleInputChange("persons", newValue);
     }
   };
+  
   const handleDinnerTime = (field, slot) => {
     console.log("Dinner Time");
     handleInputChange("timing", slot);
@@ -356,7 +367,6 @@ const ReservationForm = () => {
               </p> */}
             </div>
           </div>
-
           <div className="space-y-2">
             <input
               type="date"
