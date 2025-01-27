@@ -307,8 +307,8 @@ const ReservationForm = () => {
                   }}
                   className="w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 border-gray-300"
                 >
-                  <option value="+91">+91 India</option>
                   <option value="+1">+1 USA</option>
+                  <option value="+91">+91 India</option>
                   <option value="+44">+44 UK</option>
                   <option value="+61">+61 Australia</option>
                   <option value="+49">+49 Germany</option>
@@ -320,6 +320,94 @@ const ReservationForm = () => {
                   <option value="+55">+55 Brazil</option>
                   <option value="+7">+7 Russia</option>
                   <option value="+27">+27 South Africa</option>
+                  <option value="+20">+20 Egypt</option>
+                  <option value="+32">+32 Belgium</option>
+                  <option value="+34">+34 Spain</option>
+                  <option value="+30">+30 Greece</option>
+                  <option value="+52">+52 Mexico</option>
+                  <option value="+65">+65 Singapore</option>
+                  <option value="+82">+82 South Korea</option>
+                  <option value="+90">+90 Turkey</option>
+                  <option value="+351">+351 Portugal</option>
+                  <option value="+358">+358 Finland</option>
+                  <option value="+372">+372 Estonia</option>
+                  <option value="+420">+420 Czech Republic</option>
+                  <option value="+423">+423 Liechtenstein</option>
+                  <option value="+45">+45 Denmark</option>
+                  <option value="+46">+46 Sweden</option>
+                  <option value="+47">+47 Norway</option>
+                  <option value="+48">+48 Poland</option>
+                  <option value="+51">+51 Peru</option>
+                  <option value="+54">+54 Argentina</option>
+                  <option value="+56">+56 Chile</option>
+                  <option value="+60">+60 Malaysia</option>
+                  <option value="+62">+62 Indonesia</option>
+                  <option value="+64">+64 New Zealand</option>
+                  <option value="+66">+66 Thailand</option>
+                  <option value="+92">+92 Pakistan</option>
+                  <option value="+94">+94 Sri Lanka</option>
+                  <option value="+98">+98 Iran</option>
+                  <option value="+212">+212 Morocco</option>
+                  <option value="+213">+213 Algeria</option>
+                  <option value="+216">+216 Tunisia</option>
+                  <option value="+218">+218 Libya</option>
+                  <option value="+220">+220 Gambia</option>
+                  <option value="+221">+221 Senegal</option>
+                  <option value="+222">+222 Mauritania</option>
+                  <option value="+223">+223 Mali</option>
+                  <option value="+224">+224 Guinea</option>
+                  <option value="+225">+225 Ivory Coast</option>
+                  <option value="+226">+226 Burkina Faso</option>
+                  <option value="+227">+227 Niger</option>
+                  <option value="+228">+228 Togo</option>
+                  <option value="+229">+229 Benin</option>
+                  <option value="+230">+230 Mauritius</option>
+                  <option value="+231">+231 Liberia</option>
+                  <option value="+232">+232 Sierra Leone</option>
+                  <option value="+233">+233 Ghana</option>
+                  <option value="+234">+234 Nigeria</option>
+                  <option value="+235">+235 Chad</option>
+                  <option value="+236">+236 Central African Republic</option>
+                  <option value="+237">+237 Cameroon</option>
+                  <option value="+238">+238 Cape Verde</option>
+                  <option value="+239">+239 Sao Tome and Principe</option>
+                  <option value="+240">+240 Equatorial Guinea</option>
+                  <option value="+241">+241 Gabon</option>
+                  <option value="+242">+242 Republic of the Congo</option>
+                  <option value="+243">
+                    +243 Democratic Republic of the Congo
+                  </option>
+                  <option value="+244">+244 Angola</option>
+                  <option value="+245">+245 Guinea-Bissau</option>
+                  <option value="+246">
+                    +246 British Indian Ocean Territory
+                  </option>
+                  <option value="+248">+248 Seychelles</option>
+                  <option value="+249">+249 Sudan</option>
+                  <option value="+250">+250 Rwanda</option>
+                  <option value="+251">+251 Ethiopia</option>
+                  <option value="+252">+252 Somalia</option>
+                  <option value="+253">+253 Djibouti</option>
+                  <option value="+254">+254 Kenya</option>
+                  <option value="+255">+255 Tanzania</option>
+                  <option value="+256">+256 Uganda</option>
+                  <option value="+257">+257 Burundi</option>
+                  <option value="+258">+258 Mozambique</option>
+                  <option value="+260">+260 Zambia</option>
+                  <option value="+261">+261 Madagascar</option>
+                  <option value="+262">+262 Reunion</option>
+                  <option value="+263">+263 Zimbabwe</option>
+                  <option value="+264">+264 Namibia</option>
+                  <option value="+265">+265 Malawi</option>
+                  <option value="+266">+266 Lesotho</option>
+                  <option value="+267">+267 Botswana</option>
+                  <option value="+268">+268 Eswatini</option>
+                  <option value="+269">+269 Comoros</option>
+                  <option value="+290">+290 Saint Helena</option>
+                  <option value="+291">+291 Eritrea</option>
+                  <option value="+297">+297 Aruba</option>
+                  <option value="+298">+298 Faroe Islands</option>
+                  <option value="+299">+299 Greenland</option>
                 </select>
               </div>
 
