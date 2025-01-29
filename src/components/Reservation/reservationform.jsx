@@ -19,7 +19,7 @@ const ReservationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone: "+91",
     persons: "",
     date: today,
     timeSlot: "",
@@ -141,6 +141,9 @@ const ReservationForm = () => {
 
     if (!formData.timeSlot) {
       newErrors.timeSlot = "Please select a time slot";
+    }
+    if (!formData.persons || formData.persons === "" || formData.persons <= 0) {
+      newErrors.persons = "Please enter the number of people";
     }
 
     setErrors(newErrors);
@@ -309,8 +312,8 @@ const ReservationForm = () => {
                   }}
                   className="w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 border-gray-300"
                 >
-                  <option value="+1">+1 USA</option>
                   <option value="+91">+91 India</option>
+                  <option value="+1">+1 USA</option>
                   <option value="+44">+44 UK</option>
                   <option value="+61">+61 Australia</option>
                   <option value="+49">+49 Germany</option>
@@ -486,7 +489,9 @@ const ReservationForm = () => {
                   type="number"
                   value={persons}
                   onChange={handleCounter}
-                  className="w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300"
+                  className={`w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300 ${
+                    errors.persons ? "border-red-500 pl-4" : ""
+                  }`}
                   placeholder="Pax"
                 />
                 {/* Increment Button */}
@@ -498,7 +503,9 @@ const ReservationForm = () => {
                   +{" "}
                 </button>
               </div>
-
+              {errors.persons && (
+                <p className="text-red-500 text-sm ml-4">{errors.persons}</p>
+              )}
               {/* <p>
                 {persons} {persons === 1 ? "person" : "persons"}
               </p> */}
