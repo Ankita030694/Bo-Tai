@@ -418,6 +418,7 @@ const ReservationForm = () => {
                 <input
                   type="tel"
                   inputMode="numeric"
+                  minLength={13}
                   maxLength={13} // Allows country code + 10-digit number
                   placeholder="Phone number"
                   value={formData.phone}
