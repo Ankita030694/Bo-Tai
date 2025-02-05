@@ -4,18 +4,17 @@ import reserve from "../../assets/formbg.png";
 import loadingAnimation from "../../assets/loader-old.json";
 import Lottie from "lottie-react";
 import "./reservation.css";
-import PhoneInput from "react-phone-number-input";
 import { useNavigate } from "react-router-dom";
+
 const ReservationForm = () => {
   const navigate = useNavigate();
   const [outlets, setOutlets] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedOutlet, setSelectedOutlet] = useState(null);
-  const [showThankYou, setShowThankYou] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [slotName, setslotName] = useState("Lunch");
-  const [persons, setPersons] = useState(null);
   const today = new Date().toISOString().split("T")[0];
+
+  // Consolidated form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,6 +23,7 @@ const ReservationForm = () => {
     date: today,
     timeSlot: "",
     timing: "",
+    countryCode: "+91",
   });
 
   const [errors, setErrors] = useState({});
@@ -32,73 +32,60 @@ const ReservationForm = () => {
     getOutlets();
   }, []);
 
-  // Function to parse time like "8:00 PM" to a 24-hour format
+  // Helper function to validate a phone number in various formats.
+  // It removes non-digit characters and then checks the digit count.
+  const isValidPhoneNumber = (phone) => {
+    const digits = phone.replace(/\D/g, "");
+    return digits.length >= 6 && digits.length <= 15;
+  };
+
+  // Converts a time like "8:00 PM" to 24-hour format
   const parseTime = (time) => {
     const [hourMinute, period] = time.split(" ");
     const [hour, minute] = hourMinute.split(":").map(Number);
-
-    // Convert 12-hour format to 24-hour format
     if (period === "PM" && hour !== 12) {
-      return hour + 12; // Convert PM times to 24-hour format (12:00 PM becomes 12, 1:00 PM becomes 13)
+      return hour + 12;
     } else if (period === "AM" && hour === 12) {
-      return 0; // Convert 12:00 AM to 0:00
+      return 0;
     }
     return hour;
   };
 
-  const handleLunchTime = (field, slot) => {
-    console.log("Lunch Time Slots");
-    handleInputChange("timing", slot);
-
-    // **Filtering slots based on lunch time (11 AM to 5 PM)**
+  // Filter time slots based on type (lunch or dinner)
+  const filterTimeSlots = (slotType) => {
     const filteredSlots = selectedOutlet.timeSlots.filter((slot) => {
       const hour = parseTime(slot);
-      return hour >= 11 && hour < 18; // Lunch time: 11 AM - 5 PM
+      return slotType === "lunch" ? hour >= 11 && hour < 18 : hour >= 18 && hour < 24;
     });
     setTimeSlots(filteredSlots);
+    handleInputChange("timing", slotType);
+    // Reset selected time slot when filtering changes available options
+    handleInputChange("timeSlot", "");
   };
+
   const handleCounter = (e) => {
     const value = parseInt(e.target.value, 10) || 0;
     if (value >= 1 && value <= 150) {
-      setPersons(value);
       handleInputChange("persons", value);
     } else if (value < 1) {
-      setPersons(1);
       handleInputChange("persons", 1);
     } else if (value > 150) {
-      setPersons(150);
       handleInputChange("persons", 150);
     }
   };
 
-  // Increment persons value
   const increment = () => {
-    if (persons < 150) {
-      const newValue = persons + 1;
-      setPersons(newValue);
-      handleInputChange("persons", newValue);
+    const currentPersons = parseInt(formData.persons) || 0;
+    if (currentPersons < 150) {
+      handleInputChange("persons", currentPersons + 1);
     }
   };
 
-  // Decrement persons value
   const decrement = () => {
-    if (persons > 1) {
-      const newValue = persons - 1;
-      setPersons(newValue);
-      handleInputChange("persons", newValue);
+    const currentPersons = parseInt(formData.persons) || 0;
+    if (currentPersons > 1) {
+      handleInputChange("persons", currentPersons - 1);
     }
-  };
-
-  const handleDinnerTime = (field, slot) => {
-    console.log("Dinner Time");
-    handleInputChange("timing", slot);
-
-    // **Filtering slots based on dinner time (5 PM to 11 PM)**
-    const filteredSlots = selectedOutlet.timeSlots.filter((slot) => {
-      const hour = parseTime(slot);
-      return hour >= 18 && hour < 24; // Dinner time: 5 PM - 11 PM
-    });
-    setTimeSlots(filteredSlots);
   };
 
   async function getOutlets() {
@@ -107,13 +94,14 @@ const ReservationForm = () => {
     setLoading(false);
     if (outletsData.length > 0) {
       const sortedTimeSlots = outletsData[0].timeSlots.sort((a, b) => {
-        return parseTime(a) - parseTime(b); // Sort time slots in ascending order
+        return parseTime(a) - parseTime(b);
       });
       setSelectedOutlet(outletsData[0]);
       setTimeSlots(sortedTimeSlots);
     }
   }
 
+  // Validate entire form
   const validateForm = () => {
     const newErrors = {};
 
@@ -127,8 +115,11 @@ const ReservationForm = () => {
       newErrors.email = "Invalid email format";
     }
 
+    // Validate phone number using our helper
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
+    } else if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = "Please Enter A Valid Phone Number";
     }
 
     if (!selectedOutlet) {
@@ -142,6 +133,7 @@ const ReservationForm = () => {
     if (!formData.timeSlot) {
       newErrors.timeSlot = "Please select a time slot";
     }
+
     if (!formData.persons || formData.persons === "" || formData.persons <= 0) {
       newErrors.persons = "Please enter the number of people";
     }
@@ -150,53 +142,73 @@ const ReservationForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setLoading(true);
-      try {
-        const reservation = {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          persons: parseInt(formData.persons),
-          outlet: {
-            title: selectedOutlet.outlet,
-            id: selectedOutlet.id,
-          },
-          timeSlot: formData.timeSlot,
-          date: formData.date,
-          timing: formData.timing,
-          createdAt: Date.now(),
-        };
-
-        await FirestoreService.add("Reservations", reservation);
-        // setShowThankYou(true);
-        navigate("/thanks");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          persons: "",
-          date: "",
-          timeSlot: "",
-          timing: "",
-        });
-        setSelectedOutlet(outlets[0]);
-      } catch (error) {
-        alert(
-          "An error occurred while submitting your reservation. Please try again."
-        );
-      }
-      setLoading(false);
+  // Validate phone on blur rather than on every change
+  const validatePhone = () => {
+    if (!formData.phone.trim()) {
+      setErrors((prev) => ({ ...prev, phone: "Phone number is required" }));
+    } else if (!isValidPhoneNumber(formData.phone)) {
+      setErrors((prev) => ({ ...prev, phone: "Please Enter A Valid Phone Number" }));
+    } else {
+      setErrors((prev) => ({ ...prev, phone: "" }));
     }
   };
 
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const reservation = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        persons: parseInt(formData.persons),
+        outlet: {
+          title: selectedOutlet.outlet,
+          id: selectedOutlet.id,
+        },
+        timeSlot: formData.timeSlot,
+        date: formData.date,
+        timing: formData.timing,
+        createdAt: Date.now(),
+      };
+
+      await FirestoreService.add("Reservations", reservation);
+      navigate("/thanks");
+
+      // Reset form fields (except outlet)
+      setFormData({
+        ...formData,
+        name: "",
+        email: "",
+        phone: "",
+        persons: "",
+        date: today,
+        timeSlot: "",
+        timing: "",
+      });
+    } catch (error) {
+      alert(
+        "An error occurred while submitting your reservation. Please try again."
+      );
+    }
+    setLoading(false);
+  };
+
+  // Update formData and clear any error for the field on change.
+  // Note: No live validation for phone here.
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
+
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
@@ -213,30 +225,6 @@ const ReservationForm = () => {
     minHeight: "100vh",
   };
 
-  // if (showThankYou) {
-  //   return (
-  //     <div
-  //       style={containerStyle}
-  //       className="flex items-center justify-center w-full"
-  //     >
-  //       <div className="w-full max-w-2xl mx-4 bg-brown-300 bg-opacity-opacity-100 rounded-lg shadow-lg p-16 text-center">
-  //         <h2 className="text-3xl font-bold text-orange-100 mb-4">
-  //           Thank You!
-  //         </h2>
-  //         <p className="text-orange-100 font-medium mb-6">
-  //           Your reservation has been successfully submitted.
-  //         </p>
-  //         <button
-  //           onClick={() => setShowThankYou(false)}
-  //           className="bg-orange-100 hover:bg-brown-400 hover:text-orange-100 text-brown-100 font-medium py-2 px-6 rounded-lg transition-colors duration-200"
-  //         >
-  //           Make Another Reservation
-  //         </button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div
       style={containerStyle}
@@ -244,9 +232,7 @@ const ReservationForm = () => {
     >
       <div
         className="w-full max-w-5xl rounded-lg shadow-lg p-8 mt-24 border-orange-100 border-2"
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-        }}
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       >
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-bold text-orange-100">
@@ -255,6 +241,7 @@ const ReservationForm = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Full Name */}
           <div className="space-y-2">
             <input
               type="text"
@@ -262,13 +249,12 @@ const ReservationForm = () => {
               value={formData.name}
               onChange={(e) => {
                 const value = e.target.value;
-
-                // Only allow alphabets and whitespaces
+                // Only allow alphabets and spaces
                 if (/^[a-zA-Z\s]*$/.test(value)) {
                   handleInputChange("name", value);
                 }
               }}
-              className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300  ${
+              className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 ${
                 errors.name ? "border-red-500 border" : "border-gray-100"
               }`}
             />
@@ -277,6 +263,7 @@ const ReservationForm = () => {
             )}
           </div>
 
+          {/* Email */}
           <div className="space-y-2">
             <input
               type="email"
@@ -292,17 +279,16 @@ const ReservationForm = () => {
             )}
           </div>
 
+          {/* Phone Number with Country Code */}
           <div className="space-y-2">
             <div className="col-md-12 w-full flex">
               <div className="flex-1 pr-2">
-                {/* Dropdown for country code with names */}
                 <select
-                  value={formData.countryCode || "+91"} // Default to '+91' or use state
+                  value={formData.countryCode || "+91"}
                   onChange={(e) => {
                     const selectedCode = e.target.value;
                     handleInputChange("countryCode", selectedCode);
-
-                    // Add country code only if not already present
+                    // Ensure phone number starts with selected country code
                     if (!formData.phone.startsWith(selectedCode)) {
                       handleInputChange(
                         "phone",
@@ -379,14 +365,10 @@ const ReservationForm = () => {
                   <option value="+240">+240 Equatorial Guinea</option>
                   <option value="+241">+241 Gabon</option>
                   <option value="+242">+242 Republic of the Congo</option>
-                  <option value="+243">
-                    +243 Democratic Republic of the Congo
-                  </option>
+                  <option value="+243">+243 Democratic Republic of the Congo</option>
                   <option value="+244">+244 Angola</option>
                   <option value="+245">+245 Guinea-Bissau</option>
-                  <option value="+246">
-                    +246 British Indian Ocean Territory
-                  </option>
+                  <option value="+246">+246 British Indian Ocean Territory</option>
                   <option value="+248">+248 Seychelles</option>
                   <option value="+249">+249 Sudan</option>
                   <option value="+250">+250 Rwanda</option>
@@ -415,38 +397,26 @@ const ReservationForm = () => {
                   <option value="+299">+299 Greenland</option>
                 </select>
               </div>
-
               <div className="flex-1 pl-2">
-                {/* Phone number input with auto country code */}
                 <input
                   type="tel"
-                  inputMode="numeric"
-                  minLength={13}
-                  maxLength={13} // Allows country code + 10-digit number
                   placeholder="Phone number"
                   value={formData.phone}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    // Allow only numbers and limit length
-                    if (
-                      /^\d*$/.test(value.replace(/^\+/, "")) &&
-                      value.length <= 13
-                    ) {
-                      handleInputChange("phone", value);
-                    }
-                  }}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  onBlur={validatePhone}
                   className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 ${
                     errors.phone ? "border-red-500 border" : "border-gray-300"
                   }`}
+                  maxLength={15}
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm">{errors.phone}</p>
+                )}
               </div>
             </div>
-
-            {errors.phone && (
-              <p className="text-red-500 text-sm">{errors.phone}</p>
-            )}
           </div>
 
+          {/* Outlet Selection and Persons Counter */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <select
@@ -475,42 +445,37 @@ const ReservationForm = () => {
 
             <div className="space-y-2 text-white">
               <div className="flex items-center space-x-2">
-                {/* Decrement Button */}
                 <button
+                  type="button"
                   onClick={decrement}
                   className="px-2 py-2 bg-gray-200 rounded-md focus:outline-none"
                 >
-                  {" "}
-                  -{" "}
+                  -
                 </button>
-
-                {/* Input for person count with manual entry */}
                 <input
                   type="number"
-                  value={persons}
+                  value={formData.persons}
                   onChange={handleCounter}
                   className={`w-full px-4 py-2 border-gray-300 rounded-md text-center outline-none focus:ring-2 focus:ring-orange-300 ${
                     errors.persons ? "border-red-500 pl-4" : ""
                   }`}
                   placeholder="Pax"
                 />
-                {/* Increment Button */}
                 <button
+                  type="button"
                   onClick={increment}
                   className="px-2 py-2 bg-gray-200 rounded-md focus:outline-none"
                 >
-                  {" "}
-                  +{" "}
+                  +
                 </button>
               </div>
               {errors.persons && (
                 <p className="text-red-500 text-sm ml-4">{errors.persons}</p>
               )}
-              {/* <p>
-                {persons} {persons === 1 ? "person" : "persons"}
-              </p> */}
             </div>
           </div>
+
+          {/* Date Picker */}
           <div className="space-y-2">
             <input
               type="date"
@@ -527,11 +492,12 @@ const ReservationForm = () => {
             )}
           </div>
 
+          {/* Time Slot Filtering Buttons */}
           <div className="flex justify-evenly">
             <div className="space-y-2">
               <button
                 type="button"
-                onClick={() => handleLunchTime("timeSlot", "lunch")}
+                onClick={() => filterTimeSlots("lunch")}
                 className={`p-2 rounded-md transition-colors duration-200 md:w-48 ${
                   formData.timing === "lunch"
                     ? "bg-brown font-semibold text-white"
@@ -545,11 +511,11 @@ const ReservationForm = () => {
             <div className="space-y-2">
               <button
                 type="button"
-                onClick={() => handleDinnerTime("timeSlot", "dinner")}
-                className={`p-2 rounded-md transition-colors duration-200 md:w-48  ${
+                onClick={() => filterTimeSlots("dinner")}
+                className={`p-2 rounded-md transition-colors duration-200 md:w-48 ${
                   formData.timing === "dinner"
                     ? "bg-brown font-semibold text-white"
-                    : "bg-brown-100 hover:bg-gray-200 "
+                    : "bg-brown-100 hover:bg-gray-200"
                 }`}
               >
                 Dinner Time
@@ -557,6 +523,7 @@ const ReservationForm = () => {
             </div>
           </div>
 
+          {/* Time Slot Selection */}
           <div className="space-y-2 align items-center">
             <div className="grid grid-cols-3 gap-2">
               {timeSlots.map((slot, index) => (
@@ -567,7 +534,7 @@ const ReservationForm = () => {
                   className={`p-2 rounded-md transition-colors duration-200 ${
                     formData.timeSlot === slot
                       ? "bg-brown font-semibold text-white"
-                      : "bg-brown-100 hover:bg-gray-200 "
+                      : "bg-brown-100 hover:bg-gray-200"
                   }`}
                 >
                   {slot}
@@ -579,6 +546,7 @@ const ReservationForm = () => {
             )}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}

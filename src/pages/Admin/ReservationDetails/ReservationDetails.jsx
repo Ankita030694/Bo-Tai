@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminNavbar from "../../../components/Navbar/navbarAdmin";
 import FirestoreService from "../../../services/firestore-service";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
+
 function ReservationDetails() {
   const [reservations, setReservations] = useState([]);
   const [filteredReservations, setFilteredReservations] = useState([]);
@@ -23,6 +24,7 @@ function ReservationDetails() {
     const outletSet = new Set(data.map((res) => res.outlet.title));
     setOutlets(["All", ...outletSet]); // Add 'All' for showing all reservations
   }
+
   const downloadCSV = () => {
     if (filteredReservations.length === 0) {
       alert("No data available to download.");
@@ -49,20 +51,14 @@ function ReservationDetails() {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Updated phone formatting function – no hardcoded regions now.
   const formatPhoneNumber = (phone) => {
     if (!phone) return "N/A";
-
-    const possibleRegions = ["US", "IN", "GB", "AU", "IT"]; // Add other likely countries
-    let parsedNumber;
-
-    for (const region of possibleRegions) {
-      parsedNumber = parsePhoneNumberFromString(phone, region);
-      
-        return `+${
-          parsedNumber.countryCallingCode
-        } ${parsedNumber.formatNational()}`;
-      
-    }
+    const parsedNumber = parsePhoneNumberFromString(phone);
+    return parsedNumber && parsedNumber.isValid()
+      ? `+${parsedNumber.countryCallingCode} ${parsedNumber.formatNational()}`
+      : phone; // Return original if parsing fails
   };
 
   // Filter reservations by selected outlet and search query
@@ -75,12 +71,10 @@ function ReservationDetails() {
 
     if (searchQuery.trim()) {
       filtered = filtered.filter((res) =>
-        res.email
-          .toLowerCase()
-          .includes(
-            searchQuery.toLowerCase() ||
-              res.name.toLowerCase().includes(searchQuery.toLowerCase())
-          )
+        res.email.toLowerCase().includes(
+          searchQuery.toLowerCase() ||
+            res.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
       );
     }
 
@@ -91,8 +85,8 @@ function ReservationDetails() {
 
         if (sortConfig.key === "date") {
           // Convert date and timeSlot string to timestamp
-          valueA = new Date(`${a.date} ${a.timeSlot}`).getTime();
-          valueB = new Date(`${b.date} ${b.timeSlot}`).getTime();
+          valueA = new Date(`${a.date} ${a.timeSlot || "00:00"}`).getTime();
+          valueB = new Date(`${b.date} ${b.timeSlot || "00:00"}`).getTime();
         } else if (sortConfig.key === "createdAt") {
           // Ensure both timestamps are valid and convert to milliseconds
           valueA = b.createdAt || 0;
@@ -122,6 +116,7 @@ function ReservationDetails() {
       direction: prev.key === key && prev.direction === "asc" ? "desc" : "asc",
     }));
   };
+
   useEffect(() => {
     GetReservations();
   }, []);
@@ -188,7 +183,6 @@ function ReservationDetails() {
                   <th className="py-3 px-6 text-left">Phone</th>
                   <th className="py-3 px-6 text-left">Persons</th>
                   <th className="py-3 px-6 text-left">Timing</th>
-
                   <th
                     className="py-3 px-6 text-left cursor-pointer"
                     onClick={() => toggleSort("date")}
@@ -219,9 +213,7 @@ function ReservationDetails() {
                       <td className="py-3 px-6 text-left">{res.email}</td>
                       <td className="py-3 px-6 text-left">
                         {formatPhoneNumber(res.phone)}
-                        {/* {res.phone} */}
                       </td>
-
                       <td className="py-3 px-6 text-left">{res.persons}</td>
                       <td className="py-3 px-6 text-left">{res.timing}</td>
                       <td className="py-3 px-6 text-left">
