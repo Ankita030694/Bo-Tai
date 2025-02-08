@@ -7,6 +7,7 @@ function ReservationDetails() {
   const [reservations, setReservations] = useState([]);
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [outlets, setOutlets] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
   const [selectedOutlet, setSelectedOutlet] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortConfig, setSortConfig] = useState({
@@ -70,12 +71,15 @@ function ReservationDetails() {
     }
 
     if (searchQuery.trim()) {
-      filtered = filtered.filter((res) =>
-        res.email.toLowerCase().includes(
-          searchQuery.toLowerCase() ||
-            res.name.toLowerCase().includes(searchQuery.toLowerCase())
-        )
+      filtered = filtered.filter(
+        (res) =>
+          res.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          res.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
+    }
+
+    if (selectedDate) {
+      filtered = filtered.filter((res) => res.date === selectedDate);
     }
 
     // Apply sorting
@@ -84,11 +88,9 @@ function ReservationDetails() {
         let valueA, valueB;
 
         if (sortConfig.key === "date") {
-          // Convert date and timeSlot string to timestamp
           valueA = new Date(`${a.date} ${a.timeSlot || "00:00"}`).getTime();
           valueB = new Date(`${b.date} ${b.timeSlot || "00:00"}`).getTime();
         } else if (sortConfig.key === "createdAt") {
-          // Ensure both timestamps are valid and convert to milliseconds
           valueA = b.createdAt || 0;
           valueB = a.createdAt || 0;
         } else {
@@ -107,7 +109,7 @@ function ReservationDetails() {
     }
 
     setFilteredReservations(filtered);
-  }, [selectedOutlet, searchQuery, sortConfig, reservations]);
+  }, [selectedOutlet, searchQuery, selectedDate, sortConfig, reservations]);
 
   // Toggle sort order
   const toggleSort = (key) => {
@@ -152,7 +154,12 @@ function ReservationDetails() {
               </select>
             </div>
             <div>
-              <input type="date" className="bg-white rounded-md p-2" />
+              <input
+                type="date"
+                className="bg-white rounded-md p-2"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+              />
             </div>
             <div>
               <input
@@ -217,8 +224,12 @@ function ReservationDetails() {
                       <td className="py-3 px-6 text-left">{res.persons}</td>
                       <td className="py-3 px-6 text-left">{res.timing}</td>
                       <td className="py-3 px-6 text-left">
-                        {`${res.date} - ${res.timeSlot}`}
+                        {res.date
+                          ? new Date(res.date).toLocaleDateString("en-GB") // Format: DD/MM/YYYY
+                          : "N/A"}{" "}
+                        - {res.timeSlot}
                       </td>
+
                       <td className="py-3 px-6 text-left">
                         {res.outlet.title}
                       </td>
