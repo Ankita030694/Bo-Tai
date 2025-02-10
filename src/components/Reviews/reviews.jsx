@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import review from '../../assets/Reviews.png';
-import review2 from "../../assets/newImages/19.jpg"
+import review2 from "../../assets/newImages/19.jpg";
+import google_reviews from "../../assets/google_review.jpeg";
 
 const bananaAnimation = {
   initial: { x: -100, opacity: 0, rotateY: -30 },
@@ -43,11 +44,21 @@ const Reviews = () => {
           </motion.div>
 
           {/* Right Widget Section */}
-          <div className="grid overflow-hidden">
-            <div 
+          <div className="grid overflow-hidden h-full">
+            <img 
+              src={google_reviews} 
+              alt="Google Reviews" 
+              className="w-full h-full object-contain"
+            />
+            <img 
+              src={google_reviews} 
+              alt="Google Reviews" 
+              className="w-full h-full object-contain"
+            />  
+            {/* <div 
               className="elfsight-app-e764e504-04d6-4e56-bc1b-bb30ec9e7c1b p-4" 
               data-elfsight-app-lazy
-            ></div>
+            ></div> */}
           </div>
         </div>
       </div>
