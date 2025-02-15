@@ -18,12 +18,12 @@ const ReservationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "+91",
+    phone: "",
     persons: "",
     date: today,
     timeSlot: "",
     timing: "",
-    countryCode: "+91",
+    countryCode: "+91 (India)",
   });
 
   const [errors, setErrors] = useState({});
@@ -55,7 +55,9 @@ const ReservationForm = () => {
   const filterTimeSlots = (slotType) => {
     const filteredSlots = selectedOutlet.timeSlots.filter((slot) => {
       const hour = parseTime(slot);
-      return slotType === "lunch" ? hour >= 11 && hour < 18 : hour >= 18 && hour < 24;
+      return slotType === "lunch"
+        ? hour >= 11 && hour < 18
+        : hour >= 18 && hour < 24;
     });
     setTimeSlots(filteredSlots);
     handleInputChange("timing", slotType);
@@ -147,7 +149,10 @@ const ReservationForm = () => {
     if (!formData.phone.trim()) {
       setErrors((prev) => ({ ...prev, phone: "Phone number is required" }));
     } else if (!isValidPhoneNumber(formData.phone)) {
-      setErrors((prev) => ({ ...prev, phone: "Please Enter A Valid Phone Number" }));
+      setErrors((prev) => ({
+        ...prev,
+        phone: "Please Enter A Valid Phone Number",
+      }));
     } else {
       setErrors((prev) => ({ ...prev, phone: "" }));
     }
@@ -177,6 +182,7 @@ const ReservationForm = () => {
         date: formData.date,
         timing: formData.timing,
         createdAt: Date.now(),
+        countryCode: formData.countryCode,
       };
 
       await FirestoreService.add("Reservations", reservation);
@@ -289,112 +295,126 @@ const ReservationForm = () => {
                     const selectedCode = e.target.value;
                     handleInputChange("countryCode", selectedCode);
                     // Ensure phone number starts with selected country code
-                    if (!formData.phone.startsWith(selectedCode)) {
-                      handleInputChange(
-                        "phone",
-                        selectedCode + formData.phone.replace(/^\+\d+/, "")
-                      );
-                    }
+                    // if (!formData.phone.startsWith(selectedCode)) {
+                    //   handleInputChange(
+                    //     "phone",
+                    //     selectedCode + formData.phone.replace(/^\+\d+/, "")
+                    //   );
+                    // }
                   }}
                   className="w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 border-gray-300"
                 >
-                  <option value="+91">+91 India</option>
-                  <option value="+1">+1 USA</option>
-                  <option value="+44">+44 UK</option>
-                  <option value="+61">+61 Australia</option>
-                  <option value="+49">+49 Germany</option>
-                  <option value="+81">+81 Japan</option>
-                  <option value="+33">+33 France</option>
-                  <option value="+39">+39 Italy</option>
-                  <option value="+86">+86 China</option>
-                  <option value="+971">+971 UAE</option>
-                  <option value="+55">+55 Brazil</option>
-                  <option value="+7">+7 Russia</option>
-                  <option value="+27">+27 South Africa</option>
-                  <option value="+20">+20 Egypt</option>
-                  <option value="+32">+32 Belgium</option>
-                  <option value="+34">+34 Spain</option>
-                  <option value="+30">+30 Greece</option>
-                  <option value="+52">+52 Mexico</option>
-                  <option value="+65">+65 Singapore</option>
-                  <option value="+82">+82 South Korea</option>
-                  <option value="+90">+90 Turkey</option>
-                  <option value="+351">+351 Portugal</option>
-                  <option value="+358">+358 Finland</option>
-                  <option value="+372">+372 Estonia</option>
-                  <option value="+420">+420 Czech Republic</option>
-                  <option value="+423">+423 Liechtenstein</option>
-                  <option value="+45">+45 Denmark</option>
-                  <option value="+46">+46 Sweden</option>
-                  <option value="+47">+47 Norway</option>
-                  <option value="+48">+48 Poland</option>
-                  <option value="+51">+51 Peru</option>
-                  <option value="+54">+54 Argentina</option>
-                  <option value="+56">+56 Chile</option>
-                  <option value="+60">+60 Malaysia</option>
-                  <option value="+62">+62 Indonesia</option>
-                  <option value="+64">+64 New Zealand</option>
-                  <option value="+66">+66 Thailand</option>
-                  <option value="+92">+92 Pakistan</option>
-                  <option value="+94">+94 Sri Lanka</option>
-                  <option value="+98">+98 Iran</option>
-                  <option value="+212">+212 Morocco</option>
-                  <option value="+213">+213 Algeria</option>
-                  <option value="+216">+216 Tunisia</option>
-                  <option value="+218">+218 Libya</option>
-                  <option value="+220">+220 Gambia</option>
-                  <option value="+221">+221 Senegal</option>
-                  <option value="+222">+222 Mauritania</option>
-                  <option value="+223">+223 Mali</option>
-                  <option value="+224">+224 Guinea</option>
-                  <option value="+225">+225 Ivory Coast</option>
-                  <option value="+226">+226 Burkina Faso</option>
-                  <option value="+227">+227 Niger</option>
-                  <option value="+228">+228 Togo</option>
-                  <option value="+229">+229 Benin</option>
-                  <option value="+230">+230 Mauritius</option>
-                  <option value="+231">+231 Liberia</option>
-                  <option value="+232">+232 Sierra Leone</option>
-                  <option value="+233">+233 Ghana</option>
-                  <option value="+234">+234 Nigeria</option>
-                  <option value="+235">+235 Chad</option>
-                  <option value="+236">+236 Central African Republic</option>
-                  <option value="+237">+237 Cameroon</option>
-                  <option value="+238">+238 Cape Verde</option>
-                  <option value="+239">+239 Sao Tome and Principe</option>
-                  <option value="+240">+240 Equatorial Guinea</option>
-                  <option value="+241">+241 Gabon</option>
-                  <option value="+242">+242 Republic of the Congo</option>
-                  <option value="+243">+243 Democratic Republic of the Congo</option>
-                  <option value="+244">+244 Angola</option>
-                  <option value="+245">+245 Guinea-Bissau</option>
-                  <option value="+246">+246 British Indian Ocean Territory</option>
-                  <option value="+248">+248 Seychelles</option>
-                  <option value="+249">+249 Sudan</option>
-                  <option value="+250">+250 Rwanda</option>
-                  <option value="+251">+251 Ethiopia</option>
-                  <option value="+252">+252 Somalia</option>
-                  <option value="+253">+253 Djibouti</option>
-                  <option value="+254">+254 Kenya</option>
-                  <option value="+255">+255 Tanzania</option>
-                  <option value="+256">+256 Uganda</option>
-                  <option value="+257">+257 Burundi</option>
-                  <option value="+258">+258 Mozambique</option>
-                  <option value="+260">+260 Zambia</option>
-                  <option value="+261">+261 Madagascar</option>
-                  <option value="+262">+262 Reunion</option>
-                  <option value="+263">+263 Zimbabwe</option>
-                  <option value="+264">+264 Namibia</option>
-                  <option value="+265">+265 Malawi</option>
-                  <option value="+266">+266 Lesotho</option>
-                  <option value="+267">+267 Botswana</option>
-                  <option value="+268">+268 Eswatini</option>
-                  <option value="+269">+269 Comoros</option>
-                  <option value="+290">+290 Saint Helena</option>
-                  <option value="+291">+291 Eritrea</option>
-                  <option value="+297">+297 Aruba</option>
-                  <option value="+298">+298 Faroe Islands</option>
-                  <option value="+299">+299 Greenland</option>
+                  <option value="+91 (India)">+91 India</option>
+                  <option value="+1 (USA)">+1 USA</option>
+                  <option value="+44 (UK)">+44 UK</option>
+                  <option value="+61 (Australia)">+61 Australia</option>
+                  <option value="+49 (Germany)">+49 Germany</option>
+                  <option value="+81 (Japan)">+81 Japan</option>
+                  <option value="+33 (France)">+33 France</option>
+                  <option value="+39 (Italy)">+39 Italy</option>
+                  <option value="+86 (China)">+86 China</option>
+                  <option value="+971 (UAE)">+971 UAE</option>
+                  <option value="+55 (Brazil)">+55 Brazil</option>
+                  <option value="+7 (Russia)">+7 Russia</option>
+                  <option value="+27 (South Africa)">+27 South Africa</option>
+                  <option value="+20 (Egypt)">+20 Egypt</option>
+                  <option value="+32 (Belgium)">+32 Belgium</option>
+                  <option value="+34 (Spain)">+34 Spain</option>
+                  <option value="+30 (Greece)">+30 Greece</option>
+                  <option value="+52 (Mexico)">+52 Mexico</option>
+                  <option value="+65 (Singapore)">+65 Singapore</option>
+                  <option value="+82 (South Korea)">+82 South Korea</option>
+                  <option value="+90 (Turkey)">+90 Turkey</option>
+                  <option value="+351 (Portugal)">+351 Portugal</option>
+                  <option value="+358 (Finland)">+358 Finland</option>
+                  <option value="+372 (Estonia)">+372 Estonia</option>
+                  <option value="+420 (Czech Republic)">
+                    +420 Czech Republic
+                  </option>
+                  <option value="+423 (Liechtenstein)">+423 Liechtenstein</option>
+                  <option value="+45 (Denmark)">+45 Denmark</option>
+                  <option value="+46 (Sweden)">+46 Sweden</option>
+                  <option value="+47 (Norway)">+47 Norway</option>
+                  <option value="+48 (Poland)">+48 Poland</option>
+                  <option value="+51 (Peru)">+51 Peru</option>
+                  <option value="+54 (Argentina)">+54 Argentina</option>
+                  <option value="+56 (Chile)">+56 Chile</option>
+                  <option value="+60 (Malaysia)">+60 Malaysia</option>
+                  <option value="+62 (Indonesia)">+62 Indonesia</option>
+                  <option value="+64 (New Zealand)">+64 New Zealand</option>
+                  <option value="+66 (Thailand)">+66 Thailand</option>
+                  <option value="+92 (Pakistan)">+92 Pakistan</option>
+                  <option value="+94 (Sri Lanka)">+94 Sri Lanka</option>
+                  <option value="+98 (Iran)">+98 Iran</option>
+                  <option value="+212 (Morocco)">+212 Morocco</option>
+                  <option value="+213 (Algeria)">+213 Algeria</option>
+                  <option value="+216 (Tunisia)">+216 Tunisia</option>
+                  <option value="+218 (Libya)">+218 Libya</option>
+                  <option value="+220 (Gambia)">+220 Gambia</option>
+                  <option value="+221 (Senegal)">+221 Senegal</option>
+                  <option value="+222 (Mauritania)">+222 Mauritania</option>
+                  <option value="+223 (Mali)">+223 Mali</option>
+                  <option value="+224 (Guinea)">+224 Guinea</option>
+                  <option value="+225 (Ivory Coast)">+225 Ivory Coast</option>
+                  <option value="+226 (Burkina Faso)">+226 Burkina Faso</option>
+                  <option value="+227 (Niger)">+227 Niger</option>
+                  <option value="+228 (Togo)">+228 Togo</option>
+                  <option value="+229 (Benin)">+229 Benin</option>
+                  <option value="+230 (Mauritius)">+230 Mauritius</option>
+                  <option value="+231 (Liberia)">+231 Liberia</option>
+                  <option value="+232 (Sierra Leone)">+232 Sierra Leone</option>
+                  <option value="+233 (Ghana)">+233 Ghana</option>
+                  <option value="+234 (Nigeria)">+234 Nigeria</option>
+                  <option value="+235 (Chad)">+235 Chad</option>
+                  <option value="+236 (Central African Republic)">
+                    +236 Central African Republic
+                  </option>
+                  <option value="+237 (Cameroon)">+237 Cameroon</option>
+                  <option value="+238 (Cape Verde)">+238 Cape Verde</option>
+                  <option value="+239 (Sao Tome and Principe)">
+                    +239 Sao Tome and Principe
+                  </option>
+                  <option value="+240 (Equatorial Guinea)">
+                    +240 Equatorial Guinea
+                  </option>
+                  <option value="+241 (Gabon)">+241 Gabon</option>
+                  <option value="+242 (Republic of the Congo)">
+                    +242 Republic of the Congo
+                  </option>
+                  <option value="+243 (Democratic Republic of the Congo)">
+                    +243 Democratic Republic of the Congo
+                  </option>
+                  <option value="+244 (Angola)">+244 Angola</option>
+                  <option value="+245 (Guinea-Bissau)">+245 Guinea-Bissau</option>
+                  <option value="+246 (British Indian Ocean Territory)">
+                    +246 British Indian Ocean Territory
+                  </option>
+                  <option value="+248 (Seychelles)">+248 Seychelles</option>
+                  <option value="+249 (Sudan)">+249 Sudan</option>
+                  <option value="+250 (Rwanda)">+250 Rwanda</option>
+                  <option value="+251 (Ethiopia)">+251 Ethiopia</option>
+                  <option value="+252 (Somalia)">+252 Somalia</option>
+                  <option value="+253 (Djibouti)">+253 Djibouti</option>
+                  <option value="+254 (Kenya)">+254 Kenya</option>
+                  <option value="+255 (Tanzania)">+255 Tanzania</option>
+                  <option value="+256 (Uganda)">+256 Uganda</option>
+                  <option value="+257 (Burundi)">+257 Burundi</option>
+                  <option value="+258 (Mozambique)">+258 Mozambique</option>
+                  <option value="+260 (Zambia)">+260 Zambia</option>
+                  <option value="+261 (Madagascar)">+261 Madagascar</option>
+                  <option value="+262 (Reunion)">+262 Reunion</option>
+                  <option value="+263 (Zimbabwe)">+263 Zimbabwe</option>
+                  <option value="+264 (Namibia)">+264 Namibia</option>
+                  <option value="+265 (Malawi)">+265 Malawi</option>
+                  <option value="+266 (Lesotho)">+266 Lesotho</option>
+                  <option value="+267 (Botswana)">+267 Botswana</option>
+                  <option value="+268 (Eswatini)">+268 Eswatini</option>
+                  <option value="+269 (Comoros)">+269 Comoros</option>
+                  <option value="+290 (Saint Helena)">+290 Saint Helena</option>
+                  <option value="+291 (Eritrea)">+291 Eritrea</option>
+                  <option value="+297 (Aruba)">+297 Aruba</option>
+                  <option value="+298 (Faroe Islands)">+298 Faroe Islands</option>
+                  <option value="+299 (Greenland)">+299 Greenland</option>
                 </select>
               </div>
               <div className="flex-1 pl-2">
@@ -402,12 +422,15 @@ const ReservationForm = () => {
                   type="tel"
                   placeholder="Phone number"
                   value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+                    handleInputChange("phone", numericValue);
+                  }}
                   onBlur={validatePhone}
                   className={`w-full px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-orange-300 ${
                     errors.phone ? "border-red-500 border" : "border-gray-300"
                   }`}
-                  maxLength={15}
+                  minLength={10}
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-sm">{errors.phone}</p>

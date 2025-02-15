@@ -179,28 +179,29 @@ function ReservationDetails() {
               <thead className="bg-gray-300 text-gray-600 uppercase text-sm leading-normal">
                 <tr>
                   <th
-                    className="py-3 px-6 text-left cursor-pointer"
+                    className="py-3 px-6 text-center cursor-pointer"
                     onClick={() => toggleSort("name")}
                   >
                     Name{" "}
                     {sortConfig.key === "name" &&
                       (sortConfig.direction === "asc" ? "↑" : "↓")}
                   </th>
-                  <th className="py-3 px-6 text-left">Email</th>
-                  <th className="py-3 px-6 text-left">Phone</th>
-                  <th className="py-3 px-6 text-left">Persons</th>
-                  <th className="py-3 px-6 text-left">Timing</th>
+                  <th className="py-3 px-3 text-center">Email</th>
+                  <th className="py-3 px-3 text-center">Country</th>
+                  <th className="py-3 px-3 text-center">Phone</th>
+                  <th className="py-3 px-3 text-center">Persons</th>
+                  <th className="py-3 px-3 text-center">Timing</th>
                   <th
-                    className="py-3 px-6 text-left cursor-pointer"
+                    className="py-3 px-6 text-center cursor-pointer"
                     onClick={() => toggleSort("date")}
                   >
                     Date & Time{" "}
                     {sortConfig.key === "date" &&
                       (sortConfig.direction === "asc" ? "↑" : "↓")}
                   </th>
-                  <th className="py-3 px-6 text-left">Outlet</th>
+                  <th className="py-3 px-6 text-center">Outlet</th>
                   <th
-                    className="py-3 px-6 text-left cursor-pointer"
+                    className="py-3 px-6 text-center cursor-pointer"
                     onClick={() => toggleSort("createdAt")}
                   >
                     Created At{" "}
@@ -216,24 +217,25 @@ function ReservationDetails() {
                       key={res.id}
                       className="border-b border-gray-200 hover:bg-gray-100"
                     >
-                      <td className="py-3 px-6 text-left">{res.name}</td>
-                      <td className="py-3 px-6 text-left">{res.email}</td>
-                      <td className="py-3 px-6 text-left">
+                      <td className="py-3 px-3 text-center">{res.name}</td>
+                      <td className="py-3 px-3 text-center">{res.email}</td>
+                      <td className="py-3 px-3 text-center">{res.countryCode}</td>
+                      <td className="py-3 px-3 text-center">
                         {formatPhoneNumber(res.phone)}
                       </td>
-                      <td className="py-3 px-6 text-left">{res.persons}</td>
-                      <td className="py-3 px-6 text-left">{res.timing}</td>
-                      <td className="py-3 px-6 text-left">
+                      <td className="py-3 px-3 text-center">{res.persons}</td>
+                      <td className="py-3 px-3 text-center">{res.timing}</td>
+                      <td className="py-3 px-3 text-center">
                         {res.date
                           ? new Date(res.date).toLocaleDateString("en-GB") // Format: DD/MM/YYYY
                           : "N/A"}{" "}
                         - {res.timeSlot}
                       </td>
 
-                      <td className="py-3 px-6 text-left">
+                      <td className="py-3 px-6 text-center">
                         {res.outlet.title}
                       </td>
-                      <td className="py-3 px-6 text-left">{res.createdAt}</td>
+                      <td className="py-3 px-6 text-center">{res.createdAt}</td>
                     </tr>
                   ))
                 ) : (
